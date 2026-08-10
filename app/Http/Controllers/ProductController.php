@@ -33,10 +33,27 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'status' => 'nullable',
+    ]);
 
+    $product = Product::create([
+        'name' => $request->name,
+        'description' => $request->description,
+        'price' => $request->price,
+        'status' => $request->status ?? 0,
+    ]);
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Product created successfully',
+        'product' => $product,
+    ], 201);
+}
     /**
      * Display the specified resource.
      */
