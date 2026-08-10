@@ -11,7 +11,7 @@
     </div>
 </div>
 
-{{-- Get Products --}}
+{{-- Get All Products --}}
 
 <div class="test-card">
 
@@ -42,16 +42,19 @@
 
         <div class="form-group">
             <label for="productName">Name</label>
+
             <input type="text" id="productName" name="name">
         </div>
 
         <div class="form-group">
             <label for="productDescription">Description</label>
+
             <textarea id="productDescription" name="description" rows="4"></textarea>
         </div>
 
         <div class="form-group">
             <label for="productPrice">Price</label>
+
             <input type="number" id="productPrice" name="price" step="0.01">
         </div>
 
@@ -74,8 +77,37 @@
 
 </div>
 
+{{-- Get Product By ID --}}
+
+<div class="test-card">
+
+    ```
+    <h2>Get Product</h2>
+    <p>Retrieve a single product by ID.</p>
+
+    <form id="getProductForm">
+
+        <div class="form-group">
+            <label for="productId">Product ID</label>
+
+            <input type="number" id="productId" name="id" min="1">
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Get Product
+        </button>
+
+    </form>
+
+    <div id="singleProductResult"></div>
+    ```
+
+</div>
+
 <script>
+// ==============================
 // GET ALL PRODUCTS
+// ==============================
 
 document.getElementById('getProductsBtn').addEventListener('click', async function() {
 
@@ -137,7 +169,9 @@ document.getElementById('getProductsBtn').addEventListener('click', async functi
 });
 
 
+// ==============================
 // CREATE PRODUCT
+// ==============================
 
 document.getElementById('createProductForm').addEventListener('submit', async function(event) {
 
@@ -175,8 +209,11 @@ document.getElementById('createProductForm').addEventListener('submit', async fu
         const data = await response.json();
 
         if (!response.ok) {
+
             createResult.innerHTML = '<p>Failed to create product.</p>';
+
             console.log(data);
+
             return;
         }
 
@@ -189,6 +226,75 @@ document.getElementById('createProductForm').addEventListener('submit', async fu
     } catch (error) {
 
         createResult.innerHTML = '<p>Something went wrong.</p>';
+
+        console.error(error);
+    }
+
+});
+
+
+// ==============================
+// GET PRODUCT BY ID
+// ==============================
+
+document.getElementById('getProductForm').addEventListener('submit', async function(event) {
+
+    event.preventDefault();
+
+    const id = document.getElementById('productId').value;
+    const result = document.getElementById('singleProductResult');
+
+    result.innerHTML = '<p>Loading...</p>';
+
+    try {
+
+        const response = await fetch(`/api/products/${id}`);
+
+        const data = await response.json();
+
+        if (!response.ok) {
+
+            result.innerHTML = '<p>Product not found.</p>';
+
+            return;
+        }
+
+        const product = data.product;
+
+        result.innerHTML = `
+                <div class="product-details">
+
+                    <p>
+                        <strong>ID:</strong>
+                        ${product.id}
+                    </p>
+
+                    <p>
+                        <strong>Name:</strong>
+                        ${product.name}
+                    </p>
+
+                    <p>
+                        <strong>Description:</strong>
+                        ${product.description}
+                    </p>
+
+                    <p>
+                        <strong>Price:</strong>
+                        ${product.price}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        ${product.status == 1 ? 'Visible' : 'Hidden'}
+                    </p>
+
+                </div>
+            `;
+
+    } catch (error) {
+
+        result.innerHTML = '<p>Something went wrong.</p>';
 
         console.error(error);
     }
