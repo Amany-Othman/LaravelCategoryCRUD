@@ -8,3 +8,6 @@ Route::get('/', function () {
 });
 
 Route::resource('category', CategoryController::class);
+
+
+Route::view('/test/products', 'products.test');

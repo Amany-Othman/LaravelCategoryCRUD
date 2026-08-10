@@ -437,3 +437,54 @@ tbody td[colspan] {
     margin-top: 15px;
     padding: 20px 0 10px;
 }
+
+
+/* Product API Test Page */
+
+.test-card {
+    margin-top: 30px;
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e6e8ec;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.test-card .btn {
+    margin-bottom: 25px;
+}
+
+.test-card .table-container {
+    overflow-x: auto;
+}
+
+.test-card table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.test-card th,
+.test-card td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.test-card th {
+    background: #f5f7fa;
+    color: #343a40;
+    font-weight: 600;
+}
+
+.test-card td {
+    color: #555;
+}
+
+.test-card tbody tr:hover {
+    background: #fafbfc;
+}
+
+.test-card p {
+    margin: 0;
+    color: #777;
+}
