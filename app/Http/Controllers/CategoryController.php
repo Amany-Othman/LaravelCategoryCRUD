@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+         return view('categories.create');
     }
 
     /**
@@ -31,7 +31,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+ 
+      // validate according to the fillables in the category model    
+        $request->validate([
+    'name' => 'required|string|max:255',
+    'description' => 'required|string|max:255',
+    'status' => 'nullable',
+]);
+
+Category::create([
+    'name' => $request->name,
+    'description' => $request->description,
+    'status' => $request->status ? 1 : 0,
+]);
+
+//after creation go back to index with a message if the category is created 
+return redirect()
+    ->route('category.index')
+    ->with('success', 'Category created successfully.');
     }
 
     /**

@@ -282,3 +282,115 @@ tbody td[colspan] {
         min-width: 700px;
     }
 }
+
+
+/* =========================
+   Forms
+========================= */
+
+.form-container {
+    background-color: #ffffff;
+    border: 1px solid #e1e7ed;
+    border-radius: 9px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+    max-width: 750px;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group>label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid #d5dde5;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #263238;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    border-color: #4f7ea8;
+    box-shadow: 0 0 0 3px rgba(79, 126, 168, 0.12);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Status checkbox */
+
+.form-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #4f7ea8;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.form-group input[type="checkbox"]+label {
+    display: inline;
+    margin-left: 6px;
+    color: #536576;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Secondary button */
+
+.btn-secondary {
+    background-color: #eef2f5;
+    color: #536576;
+    margin-left: 8px;
+}
+
+.btn-secondary:hover {
+    background-color: #e2e8ee;
+}
+
+
+
+
+/* =========================
+   Alerts
+========================= */
+
+.alert {
+    padding: 13px 16px;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.alert-success {
+    background-color: #e8f4ec;
+    border: 1px solid #c9e6d1;
+    color: #28743a;
+}
+
+.alert-error {
+    background-color: #fbecec;
+    border: 1px solid #efd0d0;
+    color: #a33a3a;
+}
+
+.alert-error ul {
+    margin: 0;
+    padding-left: 18px;
+}
