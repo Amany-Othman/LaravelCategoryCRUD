@@ -61,10 +61,14 @@ return redirect()
 
     /**
      * Show the form for editing the specified resource.
+     *
      */
+    
+    //Category $category -> we need to know the id of the category we're editing
+    // compact('category') btb3t el category de ll edit blade 
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
