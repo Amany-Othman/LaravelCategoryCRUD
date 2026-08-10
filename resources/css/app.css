@@ -1,9 +1,284 @@
-@import 'tailwindcss';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #263238;
+    line-height: 1.6;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* =========================
+   Navbar
+========================= */
+
+.navbar {
+    background-color: #34495e;
+    padding: 17px 0;
+    margin-bottom: 42px;
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.brand:hover {
+    color: #dbe7f1;
+}
+
+.navbar-label {
+    color: #cbd5df;
+    font-size: 13px;
+}
+
+/* =========================
+   Page Header
+========================= */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 26px;
+}
+
+.page-header h1 {
+    color: #26384a;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.page-header p {
+    color: #718096;
+    font-size: 14px;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.btn {
+    display: inline-block;
+    padding: 10px 17px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #4f7ea8;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #416d94;
+}
+
+/* =========================
+   Table
+========================= */
+
+.table-container {
+    background-color: #ffffff;
+    border: 1px solid #e1e7ed;
+    border-radius: 9px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 15px 18px;
+    text-align: left;
+    border-bottom: 1px solid #e8edf2;
+}
+
+th {
+    background-color: #eef2f5;
+    color: #536576;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+td {
+    color: #46515c;
+    font-size: 14px;
+}
+
+tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================
+   Status
+========================= */
+
+.status {
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 14px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status.active {
+    background-color: #e6f4ea;
+    color: #28743a;
+}
+
+.status.inactive {
+    background-color: #fbe9e9;
+    color: #a33a3a;
+}
+
+/* =========================
+   Actions
+========================= */
+
+td form {
+    display: inline;
+}
+
+td a,
+td button {
+    margin-right: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+td a {
+    color: #4f7ea8;
+}
+
+td a:hover {
+    color: #365f82;
+}
+
+td button {
+    background: none;
+    border: none;
+    color: #b05252;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+td button:hover {
+    color: #913d3d;
+}
+
+/* =========================
+   Empty State
+========================= */
+
+tbody td[colspan] {
+    text-align: center;
+    padding: 48px 20px;
+    color: #8995a1;
+    font-size: 14px;
+}
+
+/* =========================
+   Pagination
+========================= */
+
+.pagination {
+    margin-top: 23px;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 7px 11px;
+    margin-right: 4px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.pagination a {
+    background-color: #ffffff;
+    border: 1px solid #dce3e9;
+    color: #596979;
+}
+
+.pagination a:hover {
+    background-color: #eef3f7;
+    border-color: #b7c8d7;
+}
+
+.pagination span {
+    background-color: #4f7ea8;
+    color: #ffffff;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 768px) {
+    .container {
+        width: 94%;
+    }
+
+    .navbar {
+        margin-bottom: 30px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 17px;
+    }
+
+    .page-header h1 {
+        font-size: 27px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 700px;
+    }
 }
