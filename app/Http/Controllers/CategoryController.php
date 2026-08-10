@@ -76,7 +76,20 @@ return redirect()
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string|max:255',
+        'status' => 'nullable',
+    ]);
+    
+    $category->update([
+    'name' => $request->name,
+    'description' => $request->description,
+    'status' => $request->status ? 1 : 0,
+]);
+return redirect()
+    ->route('category.index')
+    ->with('success', 'Category updated successfully.');
     }
 
     /**
