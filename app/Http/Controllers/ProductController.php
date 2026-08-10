@@ -77,15 +77,37 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Product $product)
-    {
-        //
-    }
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'status' => 'nullable',
+    ]);
 
+    $product->update([
+        'name' => $request->name,
+        'description' => $request->description,
+        'price' => $request->price,
+        'status' => $request->status ?? 0,
+    ]);
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Product updated successfully',
+        'product' => $product,
+    ]);
+}
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Product $product)
     {
-        //
+         $product->delete();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Product deleted successfully',
+    ]);
     }
 }

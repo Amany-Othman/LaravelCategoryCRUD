@@ -42,7 +42,6 @@
 
         <div class="form-group">
             <label for="productName">Name</label>
-
             <input type="text" id="productName" name="name">
         </div>
 
@@ -100,6 +99,59 @@
     </form>
 
     <div id="singleProductResult"></div>
+    ```
+
+</div>
+
+{{-- Update Product --}}
+
+<div class="test-card">
+
+    ```
+    <h2>Update Product</h2>
+    <p>Update an existing product through the API.</p>
+
+    <form id="updateProductForm">
+
+        <div class="form-group">
+            <label for="updateProductId">Product ID</label>
+
+            <input type="number" id="updateProductId" min="1">
+        </div>
+
+        <div class="form-group">
+            <label for="updateProductName">Name</label>
+
+            <input type="text" id="updateProductName">
+        </div>
+
+        <div class="form-group">
+            <label for="updateProductDescription">Description</label>
+
+            <textarea id="updateProductDescription" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="updateProductPrice">Price</label>
+
+            <input type="number" id="updateProductPrice" step="0.01">
+        </div>
+
+        <div class="form-group">
+            <label for="updateProductStatus">Status</label>
+
+            <input type="checkbox" id="updateProductStatus" value="1">
+
+            <label for="updateProductStatus">Visible</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Update Product
+        </button>
+
+    </form>
+
+    <div id="updateResult"></div>
     ```
 
 </div>
@@ -242,6 +294,7 @@ document.getElementById('getProductForm').addEventListener('submit', async funct
     event.preventDefault();
 
     const id = document.getElementById('productId').value;
+
     const result = document.getElementById('singleProductResult');
 
     result.innerHTML = '<p>Loading...</p>';
@@ -295,6 +348,72 @@ document.getElementById('getProductForm').addEventListener('submit', async funct
     } catch (error) {
 
         result.innerHTML = '<p>Something went wrong.</p>';
+
+        console.error(error);
+    }
+
+});
+
+
+// ==============================
+// UPDATE PRODUCT
+// ==============================
+
+document.getElementById('updateProductForm').addEventListener('submit', async function(event) {
+
+    event.preventDefault();
+
+    const id = document.getElementById('updateProductId').value;
+
+    const updateResult = document.getElementById('updateResult');
+
+    const name = document.getElementById('updateProductName').value;
+    const description = document.getElementById('updateProductDescription').value;
+    const price = document.getElementById('updateProductPrice').value;
+    const status = document.getElementById('updateProductStatus').checked ? 1 : 0;
+
+    updateResult.innerHTML = '<p>Updating product...</p>';
+
+    try {
+
+        const response = await fetch(`/api/products/${id}`, {
+
+            method: 'PUT',
+
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+
+            body: JSON.stringify({
+                name: name,
+                description: description,
+                price: price,
+                status: status
+            })
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+
+            updateResult.innerHTML = '<p>Failed to update product.</p>';
+
+            console.log(data);
+
+            return;
+        }
+
+        updateResult.innerHTML = `
+                <p>Product updated successfully!</p>
+            `;
+
+        document.getElementById('updateProductForm').reset();
+
+    } catch (error) {
+
+        updateResult.innerHTML = '<p>Something went wrong.</p>';
 
         console.error(error);
     }
