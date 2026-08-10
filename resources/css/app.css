@@ -394,3 +394,46 @@ tbody td[colspan] {
     margin: 0;
     padding-left: 18px;
 }
+
+
+
+
+/* =========================
+   Category Details
+========================= */
+
+.details-container {
+    background-color: #ffffff;
+    border: 1px solid #e1e7ed;
+    border-radius: 9px;
+    padding: 10px 30px;
+    max-width: 750px;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 18px 0;
+    border-bottom: 1px solid #edf0f3;
+    color: #4d5d6b;
+    font-size: 14px;
+}
+
+.detail-row:last-of-type {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: #34495e;
+    font-weight: 600;
+}
+
+.detail-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    padding: 20px 0 10px;
+}

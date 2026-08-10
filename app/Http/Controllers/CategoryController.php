@@ -56,9 +56,15 @@ return redirect()
      */
     public function show(Category $category)
     {
-        //
+           
+     return view('categories.show', compact('category'));
+    
     }
 
+
+
+
+    
     /**
      * Show the form for editing the specified resource.
      *
