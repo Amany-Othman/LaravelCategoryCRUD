@@ -72,5 +72,12 @@ public function update(Request $request, Product $product)
         ->with('success', 'Product updated successfully.');
 }
 
+  public function destroy(Product $product)
+{
+    $product->delete();
 
+    return redirect()
+        ->route('products.index')
+        ->with('success', 'Product deleted successfully.');
+}
 }
