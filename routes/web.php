@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -13,12 +14,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
+
 Route::resource('category', CategoryController::class);
 Route::resource('products', ProductController::class);
 
 Route::view('/test/products', 'products.test');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth')
     ->name('admin.dashboard');
 
 Route::resource('admin/categories', AdminCategoryController::class)
