@@ -40,4 +40,13 @@ class ProductWebController extends Controller
         ->with('success', 'Product created successfully.');
 }
 
+public function show(Product $product)
+{
+
+//$product  -> laravel bygeb el product ely el id bta3ha fel url
+//route model binding
+    return view('products.show', compact('product'));
+}
+
+
 }
