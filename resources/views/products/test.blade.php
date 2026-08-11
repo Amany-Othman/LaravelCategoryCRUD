@@ -15,7 +15,7 @@
 
 <div class="test-card">
 
-    ```
+
     <h2>Get Products</h2>
     <p>Retrieve all products from the API.</p>
 
@@ -26,7 +26,7 @@
     <div id="result" class="table-container">
         <p>Click "Get Products" to load products.</p>
     </div>
-    ```
+
 
 </div>
 
@@ -34,7 +34,7 @@
 
 <div class="test-card">
 
-    ```
+
     <h2>Create Product</h2>
     <p>Add a new product through the API.</p>
 
@@ -42,6 +42,7 @@
 
         <div class="form-group">
             <label for="productName">Name</label>
+
             <input type="text" id="productName" name="name">
         </div>
 
@@ -72,7 +73,7 @@
     </form>
 
     <div id="createResult"></div>
-    ```
+
 
 </div>
 
@@ -80,7 +81,7 @@
 
 <div class="test-card">
 
-    ```
+
     <h2>Get Product</h2>
     <p>Retrieve a single product by ID.</p>
 
@@ -99,7 +100,7 @@
     </form>
 
     <div id="singleProductResult"></div>
-    ```
+
 
 </div>
 
@@ -107,7 +108,7 @@
 
 <div class="test-card">
 
-    ```
+
     <h2>Update Product</h2>
     <p>Update an existing product through the API.</p>
 
@@ -142,7 +143,9 @@
 
             <input type="checkbox" id="updateProductStatus" value="1">
 
-            <label for="updateProductStatus">Visible</label>
+            <label for="updateProductStatus">
+                Visible
+            </label>
         </div>
 
         <button type="submit" class="btn btn-primary">
@@ -152,7 +155,34 @@
     </form>
 
     <div id="updateResult"></div>
-    ```
+
+
+</div>
+
+{{-- Delete Product --}}
+
+<div class="test-card">
+
+
+    <h2>Delete Product</h2>
+    <p>Delete a product by ID.</p>
+
+    <form id="deleteProductForm">
+
+        <div class="form-group">
+            <label for="deleteProductId">Product ID</label>
+
+            <input type="number" id="deleteProductId" min="1">
+        </div>
+
+        <button type="submit" class="btn btn-danger">
+            Delete Product
+        </button>
+
+    </form>
+
+    <div id="deleteResult"></div>
+
 
 </div>
 
@@ -230,7 +260,7 @@ document.getElementById('createProductForm').addEventListener('submit', async fu
     event.preventDefault();
 
     const createResult = document.getElementById('createResult');
-
+    // get the data values from the inputs 
     const name = document.getElementById('productName').value;
     const description = document.getElementById('productDescription').value;
     const price = document.getElementById('productPrice').value;
@@ -241,13 +271,17 @@ document.getElementById('createProductForm').addEventListener('submit', async fu
     try {
 
         const response = await fetch('/api/products', {
-
+            //  POST/api/products
+            // this route leads to store() function 
             method: 'POST',
-
+            // el data is sent in json form 
+            //el response mstneh in json form brdo
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
+            //el data ely I took it from the elements values de ely h post beha 
+
 
             body: JSON.stringify({
                 name: name,
@@ -300,7 +334,7 @@ document.getElementById('getProductForm').addEventListener('submit', async funct
     result.innerHTML = '<p>Loading...</p>';
 
     try {
-
+        //el url de htro7 3la route ->productController -> show()
         const response = await fetch(`/api/products/${id}`);
 
         const data = await response.json();
@@ -377,7 +411,7 @@ document.getElementById('updateProductForm').addEventListener('submit', async fu
     try {
 
         const response = await fetch(`/api/products/${id}`, {
-
+            //put l2no by update 
             method: 'PUT',
 
             headers: {
@@ -414,6 +448,59 @@ document.getElementById('updateProductForm').addEventListener('submit', async fu
     } catch (error) {
 
         updateResult.innerHTML = '<p>Something went wrong.</p>';
+
+        console.error(error);
+    }
+
+});
+
+
+// ==============================
+// DELETE PRODUCT
+// ==============================
+
+document.getElementById('deleteProductForm').addEventListener('submit', async function(event) {
+
+    event.preventDefault();
+
+    const id = document.getElementById('deleteProductId').value;
+
+    const deleteResult = document.getElementById('deleteResult');
+
+    deleteResult.innerHTML = '<p>Deleting product...</p>';
+
+    try {
+
+        const response = await fetch(`/api/products/${id}`, {
+
+            method: 'DELETE',
+
+            headers: {
+                'Accept': 'application/json'
+            }
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+
+            deleteResult.innerHTML = '<p>Failed to delete product.</p>';
+
+            console.log(data);
+
+            return;
+        }
+
+        deleteResult.innerHTML = `
+                <p>Product deleted successfully!</p>
+            `;
+
+        document.getElementById('deleteProductForm').reset();
+
+    } catch (error) {
+
+        deleteResult.innerHTML = '<p>Something went wrong.</p>';
 
         console.error(error);
     }

@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Product;
+
+use Illuminate\Http\Request;
+
+class ProductWebController extends Controller
+{
+    public function index()
+{
+    // get all the products existed in products table and  store them in $products
+    $products = Product::all();
+   //view el blade de + send the products to it
+    return view('products.index', compact('products'));
+}
+
+
+   
+      public function create()
+   {
+    //to open the create form 
+    return view('products.create');
+    } 
+
+   public function store(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
+        'price' => 'required|numeric|min:0',
+    ]);
+
+    $validated['status'] = $request->has('status');
+
+    Product::create($validated);
+
+    return redirect()
+        ->route('products.index')
+        ->with('success', 'Product created successfully.');
+}
+
+}
