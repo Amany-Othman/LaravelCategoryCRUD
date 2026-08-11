@@ -1,113 +1,83 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Product;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
-    {
-        $products = Product::all();
-
-    return response()->json([
-        'success' => true,
-        'products' => $products,
-    ]);
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
 {
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'required|string|max:255',
-        'price' => 'required|numeric',
-        'status' => 'nullable',
-    ]);
-
-    $product = Product::create([
-        'name' => $request->name,
-        'description' => $request->description,
-        'price' => $request->price,
-        'status' => $request->status ?? 0,
-    ]);
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Product created successfully',
-        'product' => $product,
-    ], 201);
+    // get all the products existed in products table and  store them in $products
+    $products = Product::all();
+   //view el blade de + send the products to it
+    return view('products.index', compact('products'));
 }
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        return response()->json([
-        'success' => true,
-        'product' => $product,
-    ]);
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Product $product)
+   
+      public function create()
+   {
+    //to open the create form 
+    return view('products.create');
+    } 
+
+   public function store(Request $request)
 {
-    $request->validate([
+    $validated = $request->validate([
         'name' => 'required|string|max:255',
-        'description' => 'required|string|max:255',
-        'price' => 'required|numeric',
-        'status' => 'nullable',
+        'description' => 'required|string',
+        'price' => 'required|numeric|min:0',
     ]);
 
-    $product->update([
-        'name' => $request->name,
-        'description' => $request->description,
-        'price' => $request->price,
-        'status' => $request->status ?? 0,
-    ]);
+    $validated['status'] = $request->has('status');
 
-    return response()->json([
-        'success' => true,
-        'message' => 'Product updated successfully',
-        'product' => $product,
-    ]);
+    Product::create($validated);
+
+    return redirect()
+        ->route('products.index')
+        ->with('success', 'Product created successfully.');
 }
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product)
-    {
-         $product->delete();
 
-    return response()->json([
-        'success' => true,
-        'message' => 'Product deleted successfully',
+public function show(Product $product)
+{
+
+//$product  -> laravel bygeb el product ely el id bta3ha fel url
+//route model binding
+    return view('products.show', compact('product'));
+}
+
+public function edit(Product $product)
+{
+    //htft7lo fom el edit bta3t el product ely 3ndo el id dh
+    return view('products.edit', compact('product'));
+}
+
+
+public function update(Request $request, Product $product)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
+        'price' => 'required|numeric|min:0',
     ]);
-    }
+
+    $validated['status'] = $request->has('status');
+
+    $product->update($validated);
+
+    return redirect()
+        ->route('products.index')
+        ->with('success', 'Product updated successfully.');
+}
+
+  public function destroy(Product $product)
+{
+    $product->delete();
+
+    return redirect()
+        ->route('products.index')
+        ->with('success', 'Product deleted successfully.');
+}
 }
