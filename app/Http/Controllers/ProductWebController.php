@@ -48,5 +48,29 @@ public function show(Product $product)
     return view('products.show', compact('product'));
 }
 
+public function edit(Product $product)
+{
+    //htft7lo fom el edit bta3t el product ely 3ndo el id dh
+    return view('products.edit', compact('product'));
+}
+
+
+public function update(Request $request, Product $product)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
+        'price' => 'required|numeric|min:0',
+    ]);
+
+    $validated['status'] = $request->has('status');
+
+    $product->update($validated);
+
+    return redirect()
+        ->route('products.index')
+        ->with('success', 'Product updated successfully.');
+}
+
 
 }
