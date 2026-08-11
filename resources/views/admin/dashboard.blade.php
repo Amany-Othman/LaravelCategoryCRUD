@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    0
+                    {{ $productsCount }}
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    0
+                    {{ $categoriesCount }}
                 </div>
             </div>
         </div>

@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\DashboardController;
 
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -17,7 +19,7 @@ Route::view('/test/products', 'products.test');
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('admin.dashboard');
 
-Route::resource('admin/categories', CategoryController::class)
+Route::resource('admin/categories', AdminCategoryController::class)
     ->names('admin.categories');
 
 Route::resource('admin/products', ProductController::class)
