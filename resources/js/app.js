@@ -1,1 +1,1 @@
-//
+import './product-image-upload';

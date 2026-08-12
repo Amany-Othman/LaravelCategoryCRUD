@@ -8,11 +8,12 @@
 
 <div class="card shadow mb-4">
 
-    <div class="card-header py-3">
+    {{-- Card Header --}}
+    <div class="card-header py-3 products-card-header">
 
         <div class="d-flex justify-content-between align-items-center">
 
-            <h6 class="m-0 font-weight-bold text-primary">
+            <h6 class="m-0">
                 Products
             </h6>
 
@@ -25,15 +26,23 @@
 
     </div>
 
+
     <div class="card-body">
 
-        <p>Total Products: {{ $products->count() }}</p>
+        {{-- Products Count --}}
+        <div class="products-count">
+            Total Products:
+            <strong>{{ $products->count() }}</strong>
+        </div>
 
+
+        {{-- Products Table --}}
         <div class="table-responsive">
 
-            <table class="table table-bordered">
+            <table class="table table-bordered products-table">
 
                 <thead>
+
                     <tr>
                         <th>ID</th>
                         <th>Image</th>
@@ -43,60 +52,104 @@
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
+
                 </thead>
+
 
                 <tbody>
 
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
 
                     <tr>
 
-                        <td>{{ $product->id }}</td>
-
+                        {{-- ID --}}
                         <td>
-                            @if ($product->getFirstMediaUrl('products'))
-                            <img src="{{ $product->getFirstMediaUrl('products') }}" alt="{{ $product->name }}"
-                                width="80" height="80" style="object-fit: cover;">
-                            @else
-                            No Image
-                            @endif
+                            {{ $product->id }}
                         </td>
 
-                        <td>{{ $product->name }}</td>
 
-                        <td>{{ $product->description }}</td>
-
-                        <td>{{ $product->price }}</td>
-
+                        {{-- Image --}}
                         <td>
-                            @if ($product->status)
-                            <span class="badge badge-success">
+
+                            @if ($product->getFirstMediaUrl('products'))
+
+                            <img src="{{ $product->getFirstMediaUrl('products') }}" alt="{{ $product->name }}"
+                                class="product-table-image">
+
+                            @else
+
+                            <span class="no-image">
+                                No Image
+                            </span>
+
+                            @endif
+
+                        </td>
+
+
+                        {{-- Name --}}
+                        <td>
+                            {{ $product->name }}
+                        </td>
+
+
+                        {{-- Description --}}
+                        <td>
+                            {{ $product->description }}
+                        </td>
+
+
+                        {{-- Price --}}
+                        <td>
+                            {{ $product->price }}
+                        </td>
+
+
+                        {{-- Status --}}
+                        <td>
+
+                            @if ($product->status === 'active')
+
+                            <span class="status-badge status-active">
                                 Active
                             </span>
+
                             @else
-                            <span class="badge badge-secondary">
+
+                            <span class="status-badge status-inactive">
                                 Inactive
                             </span>
+
                             @endif
+
                         </td>
 
+
+                        {{-- Actions --}}
                         <td>
 
-                            <a href="{{ route('admin.products.show', $product) }}" class="btn btn-info btn-sm">
+                            {{-- Show --}}
+                            <a href="{{ route('admin.products.show', $product) }}" class="btn btn-info btn-sm"
+                                title="View Product">
                                 <i class="fas fa-eye"></i>
                             </a>
 
-                            <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-warning btn-sm">
+
+                            {{-- Edit --}}
+                            <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-warning btn-sm"
+                                title="Edit Product">
                                 <i class="fas fa-edit"></i>
                             </a>
 
+
+                            {{-- Delete --}}
                             <form action="{{ route('admin.products.destroy', $product) }}" method="POST"
                                 class="d-inline">
 
                                 @csrf
                                 @method('DELETE')
 
-                                <button type="submit" class="btn btn-danger btn-sm"
+                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Product"
                                     onclick="return confirm('Are you sure you want to delete this product?')">
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -107,7 +160,17 @@
 
                     </tr>
 
-                    @endforeach
+                    @empty
+
+                    <tr>
+
+                        <td colspan="7" class="text-center text-muted py-4">
+                            No products found.
+                        </td>
+
+                    </tr>
+
+                    @endforelse
 
                 </tbody>
 

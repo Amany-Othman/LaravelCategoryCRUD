@@ -13,6 +13,8 @@
 
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body id="page-top">
@@ -110,7 +112,6 @@
                         </li>
 
                     </ul>
-                    ```
 
                 </nav>
 
@@ -143,7 +144,6 @@
     <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
-
 </body>
 
 </html>

@@ -8,48 +8,114 @@
 
 <div class="card shadow mb-4">
 
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">
+    {{-- Card Header --}}
+    <div class="card-header py-3 product-card-header">
+
+        <h6 class="m-0">
             Product Details
         </h6>
+
     </div>
 
-    <div class="card-body">
 
-        <div class="mb-3">
-            <strong>ID:</strong>
-            {{ $product->id }}
+    <div class="card-body product-details">
+
+        {{-- Product ID --}}
+        <div class="form-group">
+
+            <label>ID</label>
+
+            <div class="detail-box">
+                {{ $product->id }}
+            </div>
+
         </div>
 
-        <div class="mb-3">
-            <strong>Name:</strong>
-            {{ $product->name }}
+
+        {{-- Product Name --}}
+        <div class="form-group">
+
+            <label>Name</label>
+
+            <div class="detail-box">
+                {{ $product->name }}
+            </div>
+
         </div>
 
-        <div class="mb-3">
-            <strong>Description:</strong>
-            {{ $product->description }}
+
+        {{-- Product Description --}}
+        <div class="form-group">
+
+            <label>Description</label>
+
+            <div class="detail-box">
+                {{ $product->description }}
+            </div>
+
         </div>
 
-        <div class="mb-3">
-            <strong>Price:</strong>
-            {{ $product->price }}
+
+        {{-- Product Price --}}
+        <div class="form-group">
+
+            <label>Price</label>
+
+            <div class="detail-box">
+                {{ $product->price }}
+            </div>
+
         </div>
 
-        <div class="mb-3">
-            <strong>Status:</strong>
-            <span class="badge {{ $product->status == 'active' ? 'badge-success' : 'badge-secondary' }}">
-                {{ ucfirst($product->status) }}
-            </span>
+
+        {{-- Product Image --}}
+        <div class="form-group">
+
+            <label>Product Image</label>
+
+            @if ($product->image)
+
+            <div>
+                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="product-image">
+            </div>
+
+            @else
+
+            <div class="detail-box text-muted">
+                No image available
+            </div>
+
+            @endif
+
         </div>
 
-        <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-warning">
-            Edit
-        </a>
 
-        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">
-            Back
-        </a>
+        {{-- Product Status --}}
+        <div class="form-group">
+
+            <label>Status</label>
+
+            <div>
+                <span class="badge {{ $product->status == 'active' ? 'badge-success' : 'badge-secondary' }}">
+                    {{ ucfirst($product->status) }}
+                </span>
+            </div>
+
+        </div>
+
+
+        {{-- Buttons --}}
+        <div class="mt-4">
+
+            <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-warning">
+                Edit
+            </a>
+
+            <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">
+                Back
+            </a>
+
+        </div>
 
     </div>
 
