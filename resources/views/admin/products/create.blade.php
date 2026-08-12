@@ -6,14 +6,19 @@
 
 @section('content')
 
-<div class="card shadow mb-4">
+<div class="card shadow mb-4 product-form-card">
 
     {{-- Card Header --}}
     <div class="card-header py-3 product-card-header">
 
         <h6 class="m-0">
+            <i class="fas fa-box-open mr-2"></i>
             Create New Product
         </h6>
+
+        <p class="header-subtitle">
+            Fill in the details below to add a new product to your catalog.
+        </p>
 
     </div>
 
@@ -26,53 +31,98 @@
             @csrf
 
 
-            {{-- Product Name --}}
-            <div class="form-group">
+            {{-- Row 1: Name + Price --}}
+            <div class="form-row">
 
-                <label>Name</label>
+                {{-- Product Name --}}
+                <div class="form-group col-md-8">
 
-                <input type="text" name="name" class="form-control" value="{{ old('name') }}"
-                    placeholder="Enter product name" required>
+                    <label>Name</label>
 
-                @error('name')
-                <small class="text-danger">
-                    {{ $message }}
-                </small>
-                @enderror
+                    <input type="text" name="name" class="form-control" value="{{ old('name') }}"
+                        placeholder="Enter product name" required>
+
+                    @error('name')
+                    <small class="text-danger">
+                        {{ $message }}
+                    </small>
+                    @enderror
+
+                </div>
+
+
+                {{-- Product Price --}}
+                <div class="form-group col-md-4">
+
+                    <label>Price</label>
+
+                    <input type="number" step="0.01" name="price" class="form-control" value="{{ old('price') }}"
+                        placeholder="0.00" required>
+
+                    @error('price')
+                    <small class="text-danger">
+                        {{ $message }}
+                    </small>
+                    @enderror
+
+                </div>
 
             </div>
 
 
-            {{-- Product Description --}}
-            <div class="form-group">
+            {{-- Row 2: Description + Status --}}
+            <div class="form-row">
 
-                <label>Description</label>
+                {{-- Product Description --}}
+                <div class="form-group col-md-8">
 
-                <textarea name="description" class="form-control" rows="4" placeholder="Enter product description"
-                    required>{{ old('description') }}</textarea>
+                    <label>Description</label>
 
-                @error('description')
-                <small class="text-danger">
-                    {{ $message }}
-                </small>
-                @enderror
+                    <textarea name="description" class="form-control" rows="4" placeholder="Enter product description"
+                        required>{{ old('description') }}</textarea>
 
-            </div>
+                    @error('description')
+                    <small class="text-danger">
+                        {{ $message }}
+                    </small>
+                    @enderror
+
+                </div>
 
 
-            {{-- Product Price --}}
-            <div class="form-group">
+                {{-- Product Status --}}
+                <div class="form-group col-md-4 status-field">
 
-                <label>Price</label>
+                    <label>Status</label>
 
-                <input type="number" step="0.01" name="price" class="form-control" value="{{ old('price') }}"
-                    placeholder="Enter product price" required>
+                    <div class="status-toggle-box">
 
-                @error('price')
-                <small class="text-danger">
-                    {{ $message }}
-                </small>
-                @enderror
+                        <div class="custom-control custom-switch product-status-switch">
+
+                            <input type="hidden" name="status" value="inactive">
+
+                            <input type="checkbox" class="custom-control-input" id="statusSwitch" value="active"
+                                {{ old('status', 'active') == 'active' ? 'checked' : '' }}>
+
+                            <label class="custom-control-label" for="statusSwitch">
+                                <span class="status-switch-text">Active</span>
+                            </label>
+
+                        </div>
+
+                        <p class="status-toggle-hint">
+                            Visible to customers in your store
+                        </p>
+
+                    </div>
+
+                    @error('status')
+                    <small class="text-danger">
+                        {{ $message }}
+                    </small>
+                    @enderror
+
+                </div>
 
             </div>
 
@@ -84,8 +134,8 @@
 
                 <div id="image-drop-zone">
 
-                    <div class="upload-icon">
-                        <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                    <div class="upload-icon-circle">
+                        <i class="fas fa-cloud-upload-alt"></i>
                     </div>
 
                     <div class="upload-title">
@@ -117,12 +167,9 @@
 
             {{-- Buttons --}}
             <button type="submit" class="btn btn-primary">
+                <i class="fas fa-check mr-1"></i>
                 Create Product
             </button>
-
-            <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">
-                Cancel
-            </a>
 
         </form>
 

@@ -13,9 +13,18 @@
 
         <div class="d-flex justify-content-between align-items-center">
 
-            <h6 class="m-0">
-                Products
-            </h6>
+            <div>
+
+                <h6 class="m-0">
+                    <i class="fas fa-box mr-2"></i>
+                    Products
+                </h6>
+
+                <p class="header-subtitle mb-0">
+                    Manage your product catalog
+                </p>
+
+            </div>
 
             <a href="{{ route('admin.products.create') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i>
@@ -31,6 +40,7 @@
 
         {{-- Products Count --}}
         <div class="products-count">
+            <i class="fas fa-boxes"></i>
             Total Products:
             <strong>{{ $products->count() }}</strong>
         </div>
@@ -95,13 +105,17 @@
 
                         {{-- Description --}}
                         <td>
-                            {{ $product->description }}
+                            <span class="description-cell" title="{{ $product->description }}">
+                                {{ $product->description }}
+                            </span>
                         </td>
 
 
                         {{-- Price --}}
                         <td>
-                            {{ $product->price }}
+                            <span class="price-cell">
+                                ${{ number_format($product->price, 2) }}
+                            </span>
                         </td>
 
 
@@ -128,33 +142,37 @@
                         {{-- Actions --}}
                         <td>
 
-                            {{-- Show --}}
-                            <a href="{{ route('admin.products.show', $product) }}" class="btn btn-info btn-sm"
-                                title="View Product">
-                                <i class="fas fa-eye"></i>
-                            </a>
+                            <div class="action-group">
+
+                                {{-- Show --}}
+                                <a href="{{ route('admin.products.show', $product) }}" class="btn btn-info btn-sm"
+                                    title="View Product">
+                                    <i class="fas fa-eye"></i>
+                                </a>
 
 
-                            {{-- Edit --}}
-                            <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-warning btn-sm"
-                                title="Edit Product">
-                                <i class="fas fa-edit"></i>
-                            </a>
+                                {{-- Edit --}}
+                                <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-warning btn-sm"
+                                    title="Edit Product">
+                                    <i class="fas fa-edit"></i>
+                                </a>
 
 
-                            {{-- Delete --}}
-                            <form action="{{ route('admin.products.destroy', $product) }}" method="POST"
-                                class="d-inline">
+                                {{-- Delete --}}
+                                <form action="{{ route('admin.products.destroy', $product) }}" method="POST"
+                                    class="d-inline">
 
-                                @csrf
-                                @method('DELETE')
+                                    @csrf
+                                    @method('DELETE')
 
-                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Product"
-                                    onclick="return confirm('Are you sure you want to delete this product?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete Product"
+                                        onclick="return confirm('Are you sure you want to delete this product?')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
 
-                            </form>
+                                </form>
+
+                            </div>
 
                         </td>
 
@@ -164,8 +182,17 @@
 
                     <tr>
 
-                        <td colspan="7" class="text-center text-muted py-4">
-                            No products found.
+                        <td colspan="7" class="empty-state">
+
+                            <i class="fas fa-box-open"></i>
+
+                            <p>No products found.</p>
+
+                            <a href="{{ route('admin.products.create') }}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i>
+                                Add your first product
+                            </a>
+
                         </td>
 
                     </tr>

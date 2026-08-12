@@ -212,6 +212,138 @@
 
 
 /* =========================================================
+   Form Card Width Constraint
+   Prevents the 8/4 column split from stretching into a huge
+   awkward gap on wide screens.
+========================================================= */
+
+.product-form-card {
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Card Header Subtitle */
+
+.product-card-header .header-subtitle {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.product-card-header h6 i {
+    color: var(--primary);
+}
+
+
+/* Tighter, more deliberate spacing between form rows */
+
+.product-form .form-row {
+    margin-bottom: 4px;
+}
+
+.product-form .form-group {
+    margin-bottom: 24px;
+}
+
+.product-form .form-control {
+    padding: 11px 14px;
+    height: auto;
+}
+
+.product-form textarea.form-control {
+    padding: 12px 14px;
+}
+
+
+/* Status field stretches to match the Description textarea's
+   height instead of leaving a dead gap underneath it */
+
+.status-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.status-toggle-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 1;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background-color: #fff;
+    transition: border-color var(--transition), background-color var(--transition);
+}
+
+.status-toggle-box:has(.custom-control-input:checked) {
+    border-color: var(--primary);
+    background-color: var(--primary-soft);
+}
+
+.status-toggle-hint {
+    margin: 10px 0 0;
+    padding-left: 2.25rem;
+    font-size: 12px;
+    color: var(--text-faint);
+}
+
+.product-status-switch {
+    margin: 0;
+    padding-left: 2.25rem;
+}
+
+.product-status-switch .custom-control-label {
+    font-weight: 500;
+    color: var(--text-muted);
+    padding-top: 2px;
+}
+
+.product-status-switch .custom-control-input:checked~.custom-control-label {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.product-status-switch .custom-control-input:checked~.custom-control-label::before {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+
+/* Upload Icon Circle */
+
+.upload-icon-circle {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--primary-soft);
+    color: var(--primary);
+    font-size: 24px;
+    transition: transform var(--transition);
+}
+
+#image-drop-zone:hover .upload-icon-circle {
+    transform: translateY(-3px);
+}
+
+
+/* Submit Button */
+
+.product-form button[type="submit"] {
+    padding: 11px 26px;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(78, 115, 223, 0.25);
+}
+
+
+/* =========================================================
    Admin Product Details
 ========================================================= */
 
@@ -396,11 +528,74 @@
 
 .products-table .btn {
     border-radius: var(--radius-sm);
-    margin-right: 4px;
     transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .products-table .btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Description truncation */
+
+.description-cell {
+    display: inline-block;
+    max-width: 240px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    cursor: help;
+}
+
+
+/* Price */
+
+.price-cell {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+
+/* Action button group */
+
+.action-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.action-group .btn {
+    margin-right: 0;
+}
+
+
+/* Products count icon */
+
+.products-count i {
+    color: var(--primary);
+    margin-right: 2px;
+}
+
+
+/* Empty state */
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px !important;
+    color: var(--text-faint);
+}
+
+.empty-state i {
+    display: block;
+    font-size: 42px;
+    color: var(--border);
+    margin-bottom: 14px;
+}
+
+.empty-state p {
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: var(--text-muted);
 }
