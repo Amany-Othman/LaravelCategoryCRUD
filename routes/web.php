@@ -10,8 +10,12 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 
 
+use App\Models\HomeContent;
+
 Route::get('/', function () {
-    return view('client.home');
+    $homeContents = HomeContent::all()->keyBy('key');
+
+    return view('client.home', compact('homeContents'));
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])

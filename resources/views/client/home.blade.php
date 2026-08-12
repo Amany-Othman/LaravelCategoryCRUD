@@ -107,9 +107,10 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="slider_text ">
-                                <span>the best medical center</span>
-                                <h3> <span>Bringing health</span> <br>
-                                    to life for the whole family.</h3>
+                                <span>{{ $homeContents['hero_subtitle']->getTranslation('value', app()->getLocale()) }}</span>
+                                <h3>
+                                    {{ $homeContents['hero_title']->getTranslation('value', app()->getLocale()) }}
+                                </h3>
                                 <a href="#" class="boxed-btn5">Discover More
                                 </a>
                             </div>
