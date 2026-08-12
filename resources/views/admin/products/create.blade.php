@@ -134,25 +134,29 @@
 
                 <div id="image-drop-zone">
 
-                    <div class="upload-icon-circle">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
+                    <div id="upload-placeholder">
 
-                    <div class="upload-title">
-                        Drag & Drop your image here
-                    </div>
+                        <div class="upload-icon-circle">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
 
-                    <div class="upload-text">
-                        or click to choose an image
-                    </div>
+                        <div class="upload-title">
+                            Drag & Drop your image here
+                        </div>
 
-                    <div class="upload-info">
-                        PNG, JPG or JPEG
+                        <div class="upload-text">
+                            or click to choose an image
+                        </div>
+
+                        <div class="upload-info">
+                            PNG, JPG or JPEG
+                        </div>
+
                     </div>
 
                     <input type="file" name="image" id="image-input" accept="image/*" hidden>
 
-                    <div id="image-preview" class="mt-4"></div>
+                    <div id="image-preview"></div>
 
                 </div>
 

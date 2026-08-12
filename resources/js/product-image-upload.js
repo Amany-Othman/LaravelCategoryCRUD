@@ -1,8 +1,13 @@
-const dropZone = document.getElementById('image-drop-zone');
-const imageInput = document.getElementById('image-input');
-const imagePreview = document.getElementById('image-preview');
+document.addEventListener('DOMContentLoaded', () => {
 
-if (dropZone && imageInput && imagePreview) {
+    const dropZone = document.getElementById('image-drop-zone');
+    const imageInput = document.getElementById('image-input');
+    const imagePreview = document.getElementById('image-preview');
+    const placeholder = document.getElementById('upload-placeholder');
+
+    if (!dropZone || !imageInput || !imagePreview) {
+        return;
+    }
 
     // Click on drop zone
     dropZone.addEventListener('click', () => {
@@ -12,7 +17,9 @@ if (dropZone && imageInput && imagePreview) {
 
     // Select image
     imageInput.addEventListener('change', () => {
-        showPreview(imageInput.files[0]);
+        if (imageInput.files[0]) {
+            showPreview(imageInput.files[0]);
+        }
     });
 
 
@@ -45,7 +52,30 @@ if (dropZone && imageInput && imagePreview) {
     });
 
 
-    // Show image preview
+    // Render the preview image + change overlay, and hide the placeholder text
+    function renderPreview(src) {
+
+        imagePreview.innerHTML = `
+            <img
+                src="${src}"
+                alt="Image Preview"
+                class="img-thumbnail"
+            >
+            <div class="image-preview-overlay">
+                <i class="fas fa-camera"></i>
+                <span>Change Image</span>
+            </div>
+        `;
+
+        dropZone.classList.add('has-image');
+
+        if (placeholder) {
+            placeholder.classList.add('d-none');
+        }
+    }
+
+
+    // Show image preview from a File
     function showPreview(file) {
 
         if (!file) {
@@ -62,17 +92,10 @@ if (dropZone && imageInput && imagePreview) {
         const reader = new FileReader();
 
         reader.onload = (event) => {
-
-            imagePreview.innerHTML = `
-                <img
-                    src="${event.target.result}"
-                    alt="Image Preview"
-                    class="img-thumbnail"
-                >
-            `;
-
+            renderPreview(event.target.result);
         };
 
         reader.readAsDataURL(file);
     }
-}
+
+});

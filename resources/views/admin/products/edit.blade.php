@@ -133,43 +133,48 @@
 
                 <label>Product Image</label>
 
-                {{-- Current Image --}}
-                @if ($product->image)
-                <div class="mb-3">
+                @php
+                $currentImageUrl = $product->getFirstMediaUrl('products');
+                @endphp
 
-                    <small class="d-block font-weight-bold text-muted mb-2">
-                        Current Image
-                    </small>
+                <div id="image-drop-zone" class="{{ $currentImageUrl ? 'has-image' : '' }}">
 
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
-                        class="current-image">
+                    <div id="upload-placeholder" class="{{ $currentImageUrl ? 'd-none' : '' }}">
 
-                </div>
-                @endif
+                        <div class="upload-icon-circle">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
 
+                        <div class="upload-title">
+                            Drag & Drop your new image here
+                        </div>
 
-                {{-- New Image Drop Zone --}}
-                <div id="image-drop-zone">
+                        <div class="upload-text">
+                            or click to choose a new image
+                        </div>
 
-                    <div class="upload-icon-circle">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
+                        <div class="upload-info">
+                            PNG, JPG or JPEG
+                        </div>
 
-                    <div class="upload-title">
-                        Drag & Drop your new image here
-                    </div>
-
-                    <div class="upload-text">
-                        or click to choose a new image
-                    </div>
-
-                    <div class="upload-info">
-                        PNG, JPG or JPEG
                     </div>
 
                     <input type="file" name="image" id="image-input" accept="image/*" hidden>
 
-                    <div id="image-preview" class="mt-4"></div>
+                    <div id="image-preview">
+
+                        @if ($currentImageUrl)
+
+                        <img src="{{ $currentImageUrl }}" alt="{{ $product->name }}" class="img-thumbnail">
+
+                        <div class="image-preview-overlay">
+                            <i class="fas fa-camera"></i>
+                            <span>Change Image</span>
+                        </div>
+
+                        @endif
+
+                    </div>
 
                 </div>
 
