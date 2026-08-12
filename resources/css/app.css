@@ -446,6 +446,51 @@
 }
 
 
+/* Product ID badge in header */
+
+.product-id-badge {
+    display: inline-block;
+    padding: 3px 11px;
+    margin-left: 8px;
+    border-radius: 20px;
+    background-color: var(--primary-soft);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+
+/* Taller box for description text on the details page */
+
+.detail-box-tall {
+    min-height: 108px;
+    white-space: pre-wrap;
+}
+
+
+/* No image placeholder */
+
+.no-image-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 180px;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-soft);
+    color: var(--text-faint);
+    font-size: 14px;
+}
+
+.no-image-placeholder i {
+    font-size: 30px;
+    color: var(--border);
+}
+
+
 /* =========================================================
    Products Table (Index page)
 ========================================================= */

@@ -6,63 +6,93 @@
 
 @section('content')
 
-<div class="card shadow mb-4">
+<div class="card shadow mb-4 product-form-card">
 
     {{-- Card Header --}}
     <div class="card-header py-3 product-card-header">
 
         <h6 class="m-0">
+            <i class="fas fa-box mr-2"></i>
             Product Details
+            <span class="product-id-badge">#{{ $product->id }}</span>
         </h6>
+
+        <p class="header-subtitle">
+            View the full details for this product.
+        </p>
 
     </div>
 
 
     <div class="card-body product-details">
 
-        {{-- Product ID --}}
-        <div class="form-group">
+        {{-- Row 1: Name + Price --}}
+        <div class="form-row">
 
-            <label>ID</label>
+            {{-- Product Name --}}
+            <div class="form-group col-md-8">
 
-            <div class="detail-box">
-                {{ $product->id }}
+                <label>Name</label>
+
+                <div class="detail-box">
+                    {{ $product->name }}
+                </div>
+
+            </div>
+
+
+            {{-- Product Price --}}
+            <div class="form-group col-md-4">
+
+                <label>Price</label>
+
+                <div class="detail-box">
+                    ${{ number_format($product->price, 2) }}
+                </div>
+
             </div>
 
         </div>
 
 
-        {{-- Product Name --}}
-        <div class="form-group">
+        {{-- Row 2: Description + Status --}}
+        <div class="form-row">
 
-            <label>Name</label>
+            {{-- Product Description --}}
+            <div class="form-group col-md-8">
 
-            <div class="detail-box">
-                {{ $product->name }}
+                <label>Description</label>
+
+                <div class="detail-box detail-box-tall">
+                    {{ $product->description }}
+                </div>
+
             </div>
 
-        </div>
 
+            {{-- Product Status --}}
+            <div class="form-group col-md-4 status-field">
 
-        {{-- Product Description --}}
-        <div class="form-group">
+                <label>Status</label>
 
-            <label>Description</label>
+                <div class="status-toggle-box">
 
-            <div class="detail-box">
-                {{ $product->description }}
-            </div>
+                    @if ($product->status === 'active')
 
-        </div>
+                    <span class="status-badge status-active">
+                        Active
+                    </span>
 
+                    @else
 
-        {{-- Product Price --}}
-        <div class="form-group">
+                    <span class="status-badge status-inactive">
+                        Inactive
+                    </span>
 
-            <label>Price</label>
+                    @endif
 
-            <div class="detail-box">
-                {{ $product->price }}
+                </div>
+
             </div>
 
         </div>
@@ -73,15 +103,20 @@
 
             <label>Product Image</label>
 
-            @if ($product->image)
+            @php
+            $imageUrl = $product->getFirstMediaUrl('products');
+            @endphp
+
+            @if ($imageUrl)
 
             <div>
-                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="product-image">
+                <img src="{{ $imageUrl }}" alt="{{ $product->name }}" class="product-image">
             </div>
 
             @else
 
-            <div class="detail-box text-muted">
+            <div class="no-image-placeholder">
+                <i class="fas fa-image"></i>
                 No image available
             </div>
 
@@ -90,29 +125,12 @@
         </div>
 
 
-        {{-- Product Status --}}
-        <div class="form-group">
-
-            <label>Status</label>
-
-            <div>
-                <span class="badge {{ $product->status == 'active' ? 'badge-success' : 'badge-secondary' }}">
-                    {{ ucfirst($product->status) }}
-                </span>
-            </div>
-
-        </div>
-
-
         {{-- Buttons --}}
         <div class="mt-4">
 
             <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-warning">
+                <i class="fas fa-edit mr-1"></i>
                 Edit
-            </a>
-
-            <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">
-                Back
             </a>
 
         </div>
