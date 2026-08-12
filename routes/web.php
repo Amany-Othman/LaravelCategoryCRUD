@@ -15,9 +15,22 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])
+    ->middleware('guest')
     ->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);
+/* get el page bta3t el register 
+GET /register
+      ↓
+showRegister()
+      ↓
+register.blade.php*/
+Route::get('/register', [AuthController::class, 'showRegister'])
+    ->middleware('guest')
+    ->name('register');
+// el route ely el user bu post mno el register data bta3to 
+Route::post('/register', [AuthController::class, 'register']);
+
 
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
@@ -28,7 +41,7 @@ Route::resource('products', ProductController::class);
 Route::view('/test/products', 'products.test');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware('auth')
+    ->middleware(['auth', 'prevent.back'])
     ->name('admin.dashboard');
 
 Route::resource('admin/categories', AdminCategoryController::class)
