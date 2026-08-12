@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('client.home');
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])
