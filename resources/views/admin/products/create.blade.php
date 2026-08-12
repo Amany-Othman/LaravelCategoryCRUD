@@ -15,9 +15,7 @@
     </div>
 
     <div class="card-body">
-
-        <form action="{{ route('admin.products.store') }}" method="POST">
-
+        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -40,6 +38,15 @@
                 <label>Price</label>
                 <input type="number" step="0.01" name="price" class="form-control" value="{{ old('price') }}" required>
                 @error('price')
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label>Product Image</label>
+                <input type="file" name="image" class="form-control">
+
+                @error('image')
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>

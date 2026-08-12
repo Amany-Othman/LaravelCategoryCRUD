@@ -27,11 +27,26 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric',
             'status' => 'nullable',
+            'image' => 'nullable|image|max:2048',
         ]);
-
+         $image = $request->file('image');
+         //3mlna unset l2n el image msh column fe products 
+         //3ayzenha tb2a saved as media 
+        unset($validated['image']);
         $validated['status'] = $request->has('status') ? 1 : 0;
+        
+        $product = Product::create($validated);
 
-        Product::create($validated);
+        if ($image) {
+            //addMedia 3rft a use it hna 3shan el edit ely 3mlnah l model el product
+            //lw el user ekhtar image (lw l2n e7na 3amlenha nullable fel validation)
+            //ykhly el media de mortbta bl product dh ely el user 3mlo create
+            //media library hya ely bt3ml dh
+            //->toMediaCollection('products')  y7ot el image fe media collection esmo products 
+            
+        $product->addMedia($image)
+        ->toMediaCollection('products');
+        }
 
         return redirect()
             ->route('admin.products.index')
