@@ -43,6 +43,7 @@
 
             <div class="form-group">
                 <label>Product Image</label>
+
                 <input type="file" name="image" class="form-control">
 
                 @error('image')
@@ -54,12 +55,15 @@
                 <label>Status</label>
 
                 <select name="status" class="form-control" required>
+
                     <option value="active" {{ old('status', $product->status) == 'active' ? 'selected' : '' }}>
                         Active
                     </option>
+
                     <option value="inactive" {{ old('status', $product->status) == 'inactive' ? 'selected' : '' }}>
                         Inactive
                     </option>
+
                 </select>
             </div>
 

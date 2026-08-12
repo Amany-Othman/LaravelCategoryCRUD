@@ -70,12 +70,20 @@ class ProductController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric',
             'status' => 'nullable',
+            'image' => 'nullable|image|max:2048',
         ]);
-
+        $image = $request->file('image');
+        unset($validated['image']);
         $validated['status'] = $request->has('status') ? 1 : 0;
-
+ 
         $product->update($validated);
+        if ($image) {
 
+    $product->clearMediaCollection('products');
+
+    $product->addMedia($image)
+        ->toMediaCollection('products');
+}
         return redirect()
             ->route('admin.products.index')
             ->with('success', 'Product updated successfully.');

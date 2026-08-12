@@ -36,6 +36,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Price</th>
@@ -51,6 +52,15 @@
                     <tr>
 
                         <td>{{ $product->id }}</td>
+
+                        <td>
+                            @if ($product->getFirstMediaUrl('products'))
+                            <img src="{{ $product->getFirstMediaUrl('products') }}" alt="{{ $product->name }}"
+                                width="80" height="80" style="object-fit: cover;">
+                            @else
+                            No Image
+                            @endif
+                        </td>
 
                         <td>{{ $product->name }}</td>
 
