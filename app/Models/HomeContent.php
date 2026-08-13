@@ -3,17 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
 class HomeContent extends Model
 {
-    // de ely btkhly el value t support en & ar
-    use HasTranslations;
- //bn2ol l package en value feha translations 
-    public array $translatable = ['value'];
- // laravel y save key + value
     protected $fillable = [
-        'key',
-        'value',
+        'section',
+        'field',
+        'value_en',
+        'value_ar',
+        'link',
     ];
 }

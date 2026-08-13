@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\HomeContentController;
 
 use App\Models\HomeContent;
 
@@ -64,3 +65,6 @@ Route::resource('admin/categories', AdminCategoryController::class)
 
 Route::resource('admin/products', AdminProductController::class)
     ->names('admin.products');
+
+    Route::resource('admin/home-contents', HomeContentController::class)
+    ->names('admin.home-contents');
