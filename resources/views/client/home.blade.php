@@ -524,30 +524,37 @@
     </div>
     <!-- expert_doctors_area_end -->
 
+
     <div class="book_apointment_area">
         <div class="container">
             <div class="row justify-content-end">
                 <div class="col-lg-7">
-                    <div class="popup_box ">
+                    <div class="popup_box">
                         <div class="popup_inner">
+
                             <h3>
-                                Book an
-                                <span>Appointment</span>
+                                {{ $homeContents['appointment']['form_title']->getLocalizedValue() }}
                             </h3>
+
                             @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
                             </div>
                             @endif
+
                             <form action="{{ route('appointments.store') }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="locale" value="{{ app()->getLocale() }}">
 
                                 <div class="row">
 
                                     <div class="col-xl-12">
                                         <select class="form-select wide" id="default-select" name="doctor_name"
                                             required>
-                                            <option value="">Please select doctor to visit</option>
+                                            <option value="">
+                                                {{ $homeContents['appointment']['doctor_placeholder']->getLocalizedValue() }}
+                                            </option>
+
                                             <option value="Jhon Smith">Jhon Smith</option>
                                             <option value="Sarah Ahmed">Sarah Ahmed</option>
                                             <option value="Michael Brown">Michael Brown</option>
@@ -555,46 +562,58 @@
                                     </div>
 
                                     <div class="col-xl-9">
-                                        <input type="text" name="name" placeholder="Your name" required>
+                                        <input type="text" name="name"
+                                            placeholder="{{ $homeContents['appointment']['name_placeholder']->getLocalizedValue() }}"
+                                            required>
                                     </div>
 
                                     <div class="col-xl-3">
-                                        <input type="number" name="age" placeholder="Your age" min="1" max="120"
+                                        <input type="number" name="age"
+                                            placeholder="{{ $homeContents['appointment']['age_placeholder']->getLocalizedValue() }}"
+                                            min="1" max="120" required>
+                                    </div>
+
+                                    <div class="col-xl-6">
+                                        <input type="text" name="phone"
+                                            placeholder="{{ $homeContents['appointment']['phone_placeholder']->getLocalizedValue() }}"
                                             required>
                                     </div>
 
                                     <div class="col-xl-6">
-                                        <input type="text" name="phone" placeholder="Phone number" required>
-                                    </div>
-
-                                    <div class="col-xl-6">
-                                        <input type="email" name="email" placeholder="Email Address" required>
-                                    </div>
-
-                                    <div class="col-xl-6">
-                                        <input class="datepicker" name="appointment_date" placeholder="Appointment Date"
+                                        <input type="email" name="email"
+                                            placeholder="{{ $homeContents['appointment']['email_placeholder']->getLocalizedValue() }}"
                                             required>
                                     </div>
 
                                     <div class="col-xl-6">
-                                        <input class="timepicker" name="appointment_time" placeholder="Suitable time"
+                                        <input class="datepicker" name="appointment_date"
+                                            placeholder="{{ $homeContents['appointment']['date_placeholder']->getLocalizedValue() }}"
+                                            required>
+                                    </div>
+
+                                    <div class="col-xl-6">
+                                        <input class="timepicker" name="appointment_time"
+                                            placeholder="{{ $homeContents['appointment']['time_placeholder']->getLocalizedValue() }}"
                                             required>
                                     </div>
 
                                     <div class="col-xl-12">
                                         <button type="submit" class="boxed-btn3">
-                                            Make an Appointment
+                                            {{ $homeContents['appointment']['submit_button']->getLocalizedValue() }}
                                         </button>
                                     </div>
 
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    ```
+
 
     <!-- quality_area_start  -->
     <div class="quality_area">

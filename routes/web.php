@@ -1,20 +1,21 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\AppointmentController;
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\HomeContentController;
 use App\Http\Controllers\Admin\DoctorController;
-use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentController;
 
 use App\Models\HomeContent;
 use App\Models\Doctor;
+
 /*      → English
 /ar     → Arabic */
 
@@ -24,10 +25,7 @@ Route::get('/', function () {
     $homeContents = HomeContent::all()
         ->groupBy('section')
         ->map(function ($group) {
-            // 'key' should be the column that identifies each field
-            // within a section (e.g. 'subtitle', 'main_title', 'button_text').
-            // Rename 'key' below if your migration uses a different column name.
-           return $group->keyBy('field');
+            return $group->keyBy('field');
         });
 
     $doctors = Doctor::all();
@@ -41,7 +39,7 @@ Route::get('/{locale}', function ($locale) {
     $homeContents = HomeContent::all()
         ->groupBy('section')
         ->map(function ($group) {
-         return $group->keyBy('field');
+            return $group->keyBy('field');
         });
 
     $doctors = Doctor::all();
@@ -56,13 +54,12 @@ Route::post('/appointments', [AppointmentController::class, 'store'])
     ->name('appointments.store');
 
 
-
-
 Route::get('/login', [AuthController::class, 'showLogin'])
     ->middleware('guest')
     ->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);
+
 
 /* get el page bta3t el register
 GET /register
@@ -109,5 +106,6 @@ Route::resource('admin/home-contents', HomeContentController::class)
 Route::resource('admin/doctors', DoctorController::class)
     ->names('admin.doctors');
 
+
 Route::resource('admin/appointments', AdminAppointmentController::class)
-    ->names('admin.appointments');    
+    ->names('admin.appointments');
