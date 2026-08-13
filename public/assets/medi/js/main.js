@@ -31,7 +31,7 @@ if(menu.length){
 
 // review-active
 $('.slider_active').owlCarousel({
-  loop:true,
+  loop:false,
   margin:0,
 items:1,
 autoplay:true,

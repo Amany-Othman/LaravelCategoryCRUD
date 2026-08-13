@@ -9,30 +9,41 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 
-
 use App\Models\HomeContent;
 
+/*      → English 
+/en     → English 
+/ar     → Arabic */
+
 Route::get('/', function () {
+    return redirect('/en');
+});
+
+
+Route::get('/{locale}', function ($locale) {
     $homeContents = HomeContent::all()->keyBy('key');
 
     return view('client.home', compact('homeContents'));
-});
+})
+->where('locale', 'en|ar')
+->middleware('set.locale');
 
 Route::get('/login', [AuthController::class, 'showLogin'])
     ->middleware('guest')
     ->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);
-/* get el page bta3t el register 
+/* get el page bta3t el register
 GET /register
       ↓
 showRegister()
       ↓
 register.blade.php*/
+/* el route ely el user bu post mno el register data bta3to */
 Route::get('/register', [AuthController::class, 'showRegister'])
     ->middleware('guest')
     ->name('register');
-// el route ely el user bu post mno el register data bta3to 
+
 Route::post('/register', [AuthController::class, 'register']);
 
 

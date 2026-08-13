@@ -39,6 +39,9 @@
 </head>
 
 <body>
+
+
+
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
@@ -63,38 +66,75 @@
                                     <div class="main-menu">
                                         <nav>
                                             <ul id="navigation">
-                                                <li><a href="{{ url('/') }}">Home</a></li>
-                                                <li><a href="about.html">About</a></li>
-                                                <li><a href="#">blog <i class="ti-angle-down"></i></a>
+                                                <li>
+                                                    <a href="{{ url('/') }}">
+                                                        {{ $homeContents['nav_home']->getTranslation('value', app()->getLocale()) }}
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="about.html">
+                                                        {{ $homeContents['nav_about']->getTranslation('value', app()->getLocale()) }}
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        {{ $homeContents['nav_blog']->getTranslation('value', app()->getLocale()) }}
+                                                        <i class="ti-angle-down"></i>
+                                                    </a>
+
                                                     <ul class="submenu">
-                                                        <li><a href="blog.html">blog</a></li>
-                                                        <li><a href="single-blog.html">single-blog</a></li>
+                                                        <li><a href="blog.html">Blog</a></li>
+                                                        <li><a href="single-blog.html">Single Blog</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="#">pages <i class="ti-angle-down"></i></a>
+
+                                                <li>
+                                                    <a href="#">
+                                                        {{ $homeContents['nav_pages']->getTranslation('value', app()->getLocale()) }}
+                                                        <i class="ti-angle-down"></i>
+                                                    </a>
+
                                                     <ul class="submenu">
-                                                        <li><a href="department.html">Deportment</a></li>
-                                                        <li><a href="elements.html">elements</a></li>
+                                                        <li>
+                                                            <a href="department.html">
+                                                                {{ $homeContents['nav_department']->getTranslation('value', app()->getLocale()) }}
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="elements.html">
+                                                                {{ $homeContents['nav_elements']->getTranslation('value', app()->getLocale()) }}
+                                                            </a>
+                                                        </li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                    <div class="book_room">
-                                        <div class="book_btn">
-                                            <a class="popup-with-form" href="#test-form">Book Appointment</a>
-                                        </div>
+
+                                                <li>
+                                                    <a href="contact.html">
+                                                        {{ $homeContents['nav_contact']->getTranslation('value', app()->getLocale()) }}
+                                                    </a>
+                                                </li>
+
+                                                <div class="book_room">
+                                                    <div class="book_btn">
+                                                        <a class="popup-with-form" href="#test-form">
+                                                            {{ $homeContents['nav_book_appointment']->getTranslation('value', app()->getLocale()) }}
+                                                        </a>
+                                                    </div>
+                                                </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
-                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </header>
     <!-- header-end -->
@@ -111,7 +151,8 @@
                                 <h3>
                                     {{ $homeContents['hero_title']->getTranslation('value', app()->getLocale()) }}
                                 </h3>
-                                <a href="#" class="boxed-btn5">Discover More
+                                <a href="#" class="boxed-btn5">
+                                    {{ $homeContents['discover_more']->getTranslation('value', app()->getLocale()) }}
                                 </a>
                             </div>
                         </div>
@@ -135,16 +176,27 @@
                 </div>
                 <div class="col-xl-6 col-lg-6">
                     <div class="welcome_docmed_info">
-                        <h3>Welcome To
-                            <span>Modern Clinic.</span>
+                        <h3>
+                            {{ $homeContents['welcome_title']->getTranslation('value', app()->getLocale()) }}
                         </h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                            veni.</p>
+                        <p>
+                            {{ $homeContents['welcome_description']->getTranslation('value', app()->getLocale()) }}
+                        </p>
                         <ul>
-                            <li> <i class="flaticon-verified"></i> Lorem ipsum dolor sit amet </li>
-                            <li> <i class="flaticon-verified"></i> Consectetur adipisicing elit, sed do</li>
-                            <li> <i class="flaticon-verified"></i> Eiusmod tempor incididunt ut labore </li>
+                            <li>
+                                <i class="flaticon-verified"></i>
+                                {{ $homeContents['welcome_feature_1']->getTranslation('value', app()->getLocale()) }}
+                            </li>
+
+                            <li>
+                                <i class="flaticon-verified"></i>
+                                {{ $homeContents['welcome_feature_2']->getTranslation('value', app()->getLocale()) }}
+                            </li>
+
+                            <li>
+                                <i class="flaticon-verified"></i>
+                                {{ $homeContents['welcome_feature_3']->getTranslation('value', app()->getLocale()) }}
+                            </li>
                         </ul>
                         <a href="about.html" class="boxed-btn6">About us</a>
                     </div>
@@ -160,14 +212,21 @@
             <div class="row custom_align align-items-end justify-content-between">
                 <div class="col-lg-6">
                     <div class="section_title">
-                        <h3>Departments</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore.</p>
+                        <h3>
+                            {{ $homeContents['departments_title']->getTranslation('value', app()->getLocale()) }}
+                        </h3>
+
+                        <p>
+                            {{ $homeContents['departments_description']->getTranslation('value', app()->getLocale()) }}
+                        </p>
+
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="learn_more_btn text-right">
-                        <a href="#" class="boxed-btn">Learn more</a>
+                        <a href="#" class="boxed-btn">
+                            {{ $homeContents['learn_more']->getTranslation('value', app()->getLocale()) }}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -179,42 +238,51 @@
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
                                     aria-controls="home" aria-selected="true">
                                     <i class="flaticon-teeth"></i>
-                                    <h4>Dentistry</h4>
+                                    <h4>{{ $homeContents['department_dentistry']->getTranslation('value', app()->getLocale()) }}
+                                    </h4>
+
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                                     aria-controls="profile" aria-selected="false">
                                     <i class="flaticon-cardiovascular"></i>
-                                    <h4>Cardiology</h4>
+                                    <h4>{{ $homeContents['department_cardiology']->getTranslation('value', app()->getLocale()) }}
+                                    </h4>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
                                     aria-controls="contact" aria-selected="false">
                                     <i class="flaticon-ear"></i>
-                                    <h4>ENT Specialists</h4>
+                                    <h4>{{ $homeContents['department_ent']->getTranslation('value', app()->getLocale()) }}
+                                    </h4>
+
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="Astrology-tab" data-toggle="tab" href="#Astrology" role="tab"
                                     aria-controls="contact" aria-selected="false">
                                     <i class="flaticon-bone"></i>
-                                    <h4>Astrology</h4>
+                                    <h4>{{ $homeContents['department_astrology']->getTranslation('value', app()->getLocale()) }}
+                                    </h4>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="Neuroanatomy-tab" data-toggle="tab" href="#Neuroanatomy"
                                     role="tab" aria-controls="contact" aria-selected="false">
                                     <i class="flaticon-lung"></i>
-                                    <h4>Neuroanatomy</h4>
+                                    <h4>{{ $homeContents['department_neuroanatomy']->getTranslation('value', app()->getLocale()) }}
+                                    </h4>
+
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="Blood-tab" data-toggle="tab" href="#Blood" role="tab"
                                     aria-controls="contact" aria-selected="false">
                                     <i class="flaticon-cell"></i>
-                                    <h4>Blood Screening</h4>
+                                    <h4>{{ $homeContents['department_blood']->getTranslation('value', app()->getLocale()) }}
+                                    </h4>
                                 </a>
                             </li>
                         </ul>
@@ -231,15 +299,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-lg-7">
-                                <div class="dept_info">
-                                    <h3>Dentist with surgical mask holding <br> scaler near patient</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                        gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                                    <a href="#" class="boxed-btn">Make An Appointment</a>
-                                </div>
-                            </div>
+
                         </div>
                         <!-- single_content  -->
                     </div>
@@ -253,11 +313,17 @@
                             </div>
                             <div class="col-lg-7">
                                 <div class="dept_info">
-                                    <h3>Dentist with surgical mask holding <br> scaler near patient</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                        gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                                    <a href="#" class="boxed-btn">Make An Appointment</a>
+                                    <h3>
+                                        {{ $homeContents['department_content_title']->getTranslation('value', app()->getLocale()) }}
+                                    </h3>
+
+                                    <p>
+                                        {{ $homeContents['department_content_description']->getTranslation('value', app()->getLocale()) }}
+                                    </p>
+
+                                    <a href="#" class="boxed-btn">
+                                        {{ $homeContents['make_appointment']->getTranslation('value', app()->getLocale()) }}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -273,11 +339,17 @@
                             </div>
                             <div class="col-lg-7">
                                 <div class="dept_info">
-                                    <h3>Dentist with surgical mask holding <br> scaler near patient</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                        gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                                    <a href="#" class="boxed-btn">Make An Appointment</a>
+                                    <h3>
+                                        {{ $homeContents['department_content_title']->getTranslation('value', app()->getLocale()) }}
+                                    </h3>
+
+                                    <p>
+                                        {{ $homeContents['department_content_description']->getTranslation('value', app()->getLocale()) }}
+                                    </p>
+
+                                    <a href="#" class="boxed-btn">
+                                        {{ $homeContents['make_appointment']->getTranslation('value', app()->getLocale()) }}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -293,11 +365,17 @@
                             </div>
                             <div class="col-lg-7">
                                 <div class="dept_info">
-                                    <h3>Dentist with surgical mask holding <br> scaler near patient</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                        gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                                    <a href="#" class="boxed-btn">Make An Appointment</a>
+                                    <h3>
+                                        {{ $homeContents['department_content_title']->getTranslation('value', app()->getLocale()) }}
+                                    </h3>
+
+                                    <p>
+                                        {{ $homeContents['department_content_description']->getTranslation('value', app()->getLocale()) }}
+                                    </p>
+
+                                    <a href="#" class="boxed-btn">
+                                        {{ $homeContents['make_appointment']->getTranslation('value', app()->getLocale()) }}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -313,11 +391,17 @@
                             </div>
                             <div class="col-lg-7">
                                 <div class="dept_info">
-                                    <h3>Dentist with surgical mask holding <br> scaler near patient</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                        gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                                    <a href="#" class="boxed-btn">Make An Appointment</a>
+                                    <h3>
+                                        {{ $homeContents['department_content_title']->getTranslation('value', app()->getLocale()) }}
+                                    </h3>
+
+                                    <p>
+                                        {{ $homeContents['department_content_description']->getTranslation('value', app()->getLocale()) }}
+                                    </p>
+
+                                    <a href="#" class="boxed-btn">
+                                        {{ $homeContents['make_appointment']->getTranslation('value', app()->getLocale()) }}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -333,11 +417,17 @@
                             </div>
                             <div class="col-lg-7">
                                 <div class="dept_info">
-                                    <h3>Dentist with surgical mask holding <br> scaler near patient</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                                        gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                                    <a href="#" class="boxed-btn">Make An Appointment</a>
+                                    <h3>
+                                        {{ $homeContents['department_content_title']->getTranslation('value', app()->getLocale()) }}
+                                    </h3>
+
+                                    <p>
+                                        {{ $homeContents['department_content_description']->getTranslation('value', app()->getLocale()) }}
+                                    </p>
+
+                                    <a href="#" class="boxed-btn">
+                                        {{ $homeContents['make_appointment']->getTranslation('value', app()->getLocale()) }}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -724,6 +814,7 @@
     <!-- form itself end -->
 
     <!-- JS here -->
+    <!-- JS here -->
     {{-- JS here --}}
     <script src="{{ asset('assets/medi/js/vendor/modernizr-3.5.0.min.js') }}"></script>
     <script src="{{ asset('assets/medi/js/vendor/jquery-1.12.4.min.js') }}"></script>
@@ -768,8 +859,20 @@
         }
     });
 
-    $(document).ready(function() {
-        $('.js-example-basic-multiple').select2();
+    // Fix: hero slider only has 1 slide right now, and Owl Carousel's
+    // loop:true (set in main.js) breaks with a single item, leaving it
+    // stuck at opacity:0. Destroy and re-init with loop:false until
+    // more slides are added.
+    if ($('.slider_active').hasClass('owl-loaded')) {
+        $('.slider_active').trigger('destroy.owl.carousel');
+    }
+    $('.slider_active').owlCarousel({
+        loop: false,
+        margin: 0,
+        items: 1,
+        nav: true,
+        dots: false,
+        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>']
     });
     </script>
 
