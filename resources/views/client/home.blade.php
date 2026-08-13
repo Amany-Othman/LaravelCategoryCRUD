@@ -99,6 +99,7 @@
                                                     <a href="{{ url('/') }}">English</a>
                                                 </li>
                                                 @endif
+                                                <a href="{{ route('login') }}" style="color: #fff;">Login</a>
                                                 <li>
                                                     <a href="contact.html">
                                                         Contact
@@ -465,78 +466,61 @@
                 </div>
             </div>
             <div class="row justify-content-center">
+
+                @foreach ($doctors as $doctor)
+
                 <div class="col-lg-4 col-md-6">
+
                     <div class="single_expert">
+
                         <div class="expert_thumb">
-                            <img src="{{ asset('assets/medi/img/experts/1.png') }}" alt="">
+                            <img src="{{ asset($doctor->image) }}" alt="{{ $doctor->name_en }}">
                         </div>
+
                         <div class="experts_name text-center">
-                            <h3>Jhon Smith</h3>
-                            <span>Dentist</span>
+
+                            <h3>
+                                {{ app()->getLocale() === 'ar'
+                            ? $doctor->name_ar
+                            : $doctor->name_en }}
+                            </h3>
+
+                            <span>
+                                {{ app()->getLocale() === 'ar'
+                            ? $doctor->specialty_ar
+                            : $doctor->specialty_en }}
+                            </span>
+
                             <div class="social_links">
                                 <ul>
                                     <li>
-                                        <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                        <a href="#">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
                                     </li>
+
                                     <li>
-                                        <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                        <a href="#">
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
                                     </li>
+
                                     <li>
-                                        <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                        <a href="#">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_expert">
-                        <div class="expert_thumb">
-                            <img src="{{ asset('assets/medi/img/experts/2.png') }}" alt="">
-                        </div>
-                        <div class="experts_name text-center">
-                            <h3>Jhon Smith</h3>
-                            <span>Dentist</span>
-                            <div class="social_links">
-                                <ul>
-                                    <li>
-                                        <a href="#"> <i class="fa fa-facebook"></i> </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> <i class="fa fa-linkedin"></i> </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> <i class="fa fa-twitter"></i> </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single_expert">
-                        <div class="expert_thumb">
-                            <img src="{{ asset('assets/medi/img/experts/3.png') }}" alt="">
-                        </div>
-                        <div class="experts_name text-center">
-                            <h3>Jhon Smith</h3>
-                            <span>Dentist</span>
-                            <div class="social_links">
-                                <ul>
-                                    <li>
-                                        <a href="#"> <i class="fa fa-facebook"></i> </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> <i class="fa fa-linkedin"></i> </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"> <i class="fa fa-twitter"></i> </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                @endforeach
+
             </div>
         </div>
     </div>

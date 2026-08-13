@@ -80,6 +80,12 @@
                     <span>Home Content</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.doctors.index') }}">
+                    <i class="fas fa-user-md fa-fw"></i>
+                    <span>Doctors</span>
+                </a>
+            </li>
 
             <hr class="sidebar-divider">
 

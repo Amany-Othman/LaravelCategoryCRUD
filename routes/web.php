@@ -9,9 +9,10 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\HomeContentController;
+use App\Http\Controllers\Admin\DoctorController;
 
 use App\Models\HomeContent;
-
+use App\Models\Doctor;
 /*      → English
 /ar     → Arabic */
 
@@ -22,7 +23,9 @@ Route::get('/', function () {
         ->get()
         ->keyBy('field');
 
-    return view('client.home', compact('homeContents'));
+    $doctors = Doctor::all();
+
+    return view('client.home', compact('homeContents', 'doctors'));
 });
 
 Route::get('/{locale}', function ($locale) {
@@ -31,7 +34,9 @@ Route::get('/{locale}', function ($locale) {
         ->get()
         ->keyBy('field');
 
-    return view('client.home', compact('homeContents'));
+    $doctors = Doctor::all();
+
+    return view('client.home', compact('homeContents', 'doctors'));
 })
     ->where('locale', 'ar')
     ->middleware('set.locale');
@@ -83,3 +88,7 @@ Route::resource('admin/products', AdminProductController::class)
 
 Route::resource('admin/home-contents', HomeContentController::class)
     ->names('admin.home-contents');
+  
+    
+Route::resource('admin/doctors', DoctorController::class)
+    ->names('admin.doctors');    
