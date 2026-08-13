@@ -13,24 +13,28 @@ use App\Http\Controllers\Admin\HomeContentController;
 use App\Models\HomeContent;
 
 /*      → English
-/en     → English
 /ar     → Arabic */
 
 Route::get('/', function () {
-    return redirect('/en');
-});
+    app()->setLocale('en');
 
+    $homeContents = HomeContent::where('section', 'hero')
+        ->get()
+        ->keyBy('field');
+
+    return view('client.home', compact('homeContents'));
+});
 
 Route::get('/{locale}', function ($locale) {
 
-  $homeContents = HomeContent::where('section', 'hero')
-    ->get()
-    ->keyBy('field');
+    $homeContents = HomeContent::where('section', 'hero')
+        ->get()
+        ->keyBy('field');
 
     return view('client.home', compact('homeContents'));
 })
-->where('locale', 'en|ar')
-->middleware('set.locale');
+    ->where('locale', 'ar')
+    ->middleware('set.locale');
 
 
 Route::get('/login', [AuthController::class, 'showLogin'])

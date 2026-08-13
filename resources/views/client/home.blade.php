@@ -87,9 +87,18 @@
                                                                 Elements
                                                             </a>
                                                         </li>
+
                                                     </ul>
                                                 </li>
-
+                                                @if (app()->getLocale() === 'en')
+                                                <li>
+                                                    <a href="{{ url('/ar') }}">العربية</a>
+                                                </li>
+                                                @else
+                                                <li>
+                                                    <a href="{{ url('/') }}">English</a>
+                                                </li>
+                                                @endif
                                                 <li>
                                                     <a href="contact.html">
                                                         Contact
