@@ -51,7 +51,7 @@
         <div class="products-count">
             <i class="fas fa-file-alt"></i>
             Total Content:
-            <strong>{{ $homeContents->count() }}</strong>
+            <strong>{{ $homeContents->sum(fn ($section) => $section->count()) }}</strong>
         </div>
 
 
@@ -82,8 +82,12 @@
 
                 <tbody>
 
+                    @php
+                    $contents = $homeContents->flatten();
+                    @endphp
 
-                    @forelse ($homeContents as $content)
+
+                    @forelse ($contents as $content)
 
 
                     <tr>
@@ -98,7 +102,24 @@
 
                         {{-- Content --}}
                         <td>
+                            @if ($content->section === 'hero' && $content->field === 'main_title')
+                            Hero Main Title
+
+                            @elseif ($content->section === 'hero' && $content->field === 'subtitle')
+                            Hero Subtitle
+
+                            @elseif ($content->section === 'hero' && $content->field === 'button_text')
+                            Hero Button Text
+
+                            @elseif ($content->section === 'doctors' && $content->field === 'section_title')
+                            Doctors Section Title
+
+                            @elseif ($content->section === 'doctors' && $content->field === 'section_description')
+                            Doctors Section Description
+
+                            @else
                             {{ ucfirst(str_replace('_', ' ', $content->field)) }}
+                            @endif
                         </td>
 
 

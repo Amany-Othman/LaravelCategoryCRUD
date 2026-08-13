@@ -13,4 +13,11 @@ class HomeContent extends Model
         'value_ar',
         'link',
     ];
+
+    public function getLocalizedValue(): ?string
+    {
+        return app()->getLocale() === 'ar'
+            ? $this->value_ar
+            : $this->value_en;
+    }
 }

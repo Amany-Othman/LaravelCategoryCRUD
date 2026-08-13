@@ -144,21 +144,15 @@
                                         - link
                                 --}}
                                 <span>
-                                    {{ app()->getLocale() === 'ar'
-        ? $homeContents['subtitle']->value_ar
-        : $homeContents['subtitle']->value_en }}
+                                    {{ $homeContents['hero']['subtitle']->getLocalizedValue() }}
                                 </span>
 
                                 <h3>
-                                    {{ app()->getLocale() === 'ar'
-        ? $homeContents['title']->value_ar
-        : $homeContents['title']->value_en }}
+                                    {{ $homeContents['hero']['main_title']getLocalizedValue() }}
                                 </h3>
 
-                                <a href="{{ $homeContents['button']->link ?? '#' }}" class="boxed-btn5">
-                                    {{ app()->getLocale() === 'ar'
-        ? $homeContents['button']->value_ar
-        : $homeContents['button']->value_en }}
+                                <a href="{{ $homeContents['hero']['button']->link ?? '#' }}" class="boxed-btn5">
+                                    {{ $homeContents['hero']['button_text']->getLocalizedValue() }}
                                 </a>
                             </div>
                         </div>
@@ -459,9 +453,13 @@
             <div class="row justify-content-center ">
                 <div class="col-lg-6">
                     <div class="section_title mb-55 text-center">
-                        <h3>Our Doctors</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore.</p>
+                        <h3>
+                            {{ $homeContents['doctors']['section_title']->getLocalizedValue() }}
+                        </h3>
+
+                        <p>
+                            {{ $homeContents['doctors']['section_description']->getLocalizedValue() }}
+                        </p>
                     </div>
                 </div>
             </div>

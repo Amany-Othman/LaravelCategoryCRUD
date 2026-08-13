@@ -19,20 +19,19 @@ use App\Models\Doctor;
 Route::get('/', function () {
     app()->setLocale('en');
 
-    $homeContents = HomeContent::where('section', 'hero')
-        ->get()
-        ->keyBy('field');
+    $homeContents = HomeContent::all()
+        ->groupBy('section');
 
     $doctors = Doctor::all();
 
     return view('client.home', compact('homeContents', 'doctors'));
 });
 
+
 Route::get('/{locale}', function ($locale) {
 
-    $homeContents = HomeContent::where('section', 'hero')
-        ->get()
-        ->keyBy('field');
+    $homeContents = HomeContent::all()
+        ->groupBy('section');
 
     $doctors = Doctor::all();
 
@@ -40,7 +39,6 @@ Route::get('/{locale}', function ($locale) {
 })
     ->where('locale', 'ar')
     ->middleware('set.locale');
-
 
 Route::get('/login', [AuthController::class, 'showLogin'])
     ->middleware('guest')
