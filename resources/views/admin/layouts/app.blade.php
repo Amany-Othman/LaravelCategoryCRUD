@@ -74,6 +74,13 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.home-contents.index') }}">
+                    <i class="fas fa-home fa-fw"></i>
+                    <span>Home Content</span>
+                </a>
+            </li>
+
             <hr class="sidebar-divider">
 
             <!-- Sidebar Toggler -->
