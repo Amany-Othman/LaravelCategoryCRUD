@@ -86,12 +86,15 @@
                     <span>Doctors</span>
                 </a>
             </li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.departments.index') }}"> <i
+                        class="fas fa-hospital"></i> <span>Departments</span> </a> </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.appointments.index') }}">
                     <i class="fas fa-calendar-check fa-fw"></i>
                     <span>Appointments</span>
                 </a>
             </li>
+
 
             <hr class="sidebar-divider">
 

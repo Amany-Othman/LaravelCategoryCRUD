@@ -12,12 +12,11 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\HomeContentController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentController;
-
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Models\HomeContent;
 use App\Models\Doctor;
+use App\Models\Department;
 
-/*      → English
-/ar     → Arabic */
 
 Route::get('/', function () {
     app()->setLocale('en');
@@ -28,9 +27,11 @@ Route::get('/', function () {
             return $group->keyBy('field');
         });
 
-    $doctors = Doctor::all();
+  $doctors = Doctor::all();
 
-    return view('client.home', compact('homeContents', 'doctors'));
+$departments = Department::where('status', true)->get();
+
+return view('client.home', compact('homeContents', 'doctors', 'departments'));
 });
 
 
@@ -42,9 +43,11 @@ Route::get('/{locale}', function ($locale) {
             return $group->keyBy('field');
         });
 
-    $doctors = Doctor::all();
+ $doctors = Doctor::all();
 
-    return view('client.home', compact('homeContents', 'doctors'));
+$departments = Department::where('status', true)->get();
+
+return view('client.home', compact('homeContents', 'doctors', 'departments'));
 })
     ->where('locale', 'ar')
     ->middleware('set.locale');
@@ -105,7 +108,10 @@ Route::resource('admin/home-contents', HomeContentController::class)
 
 Route::resource('admin/doctors', DoctorController::class)
     ->names('admin.doctors');
-
+ Route::resource('admin/departments', DepartmentController::class)
+    ->except(['show'])
+    ->names('admin.departments');    
+    
 
 Route::resource('admin/appointments', AdminAppointmentController::class)
     ->names('admin.appointments');

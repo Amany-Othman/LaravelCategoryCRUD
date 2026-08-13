@@ -208,243 +208,46 @@
     <!-- welcome_clicnic_area_end -->
 
     <!-- depertment_area_start  -->
+
+
     <div class="depertment_area">
         <div class="container">
-            <div class="row custom_align align-items-end justify-content-between">
-                <div class="col-lg-6">
+            <div class="row custom_align align-items-center justify-content-between">
+                <div class="col-lg-8">
                     <div class="section_title">
-                        <h3>
-                            Departments
-                        </h3>
-
+                        <h3>{{ app()->getLocale() === 'ar' ? 'الأقسام الطبية' : 'Departments' }}</h3>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore.
+                            {{ app()->getLocale() === 'ar'
+                        ? 'تعرف على الأقسام الطبية والخدمات المتخصصة التي نقدمها.'
+                        : 'Explore our medical departments and specialized healthcare services.' }}
                         </p>
-
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="learn_more_btn text-right">
-                        <a href="#" class="boxed-btn">
-                            Learn More
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="depart_ment_tab mb-30">
-                        <ul class="nav" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                    aria-controls="home" aria-selected="true">
-                                    <i class="flaticon-teeth"></i>
-                                    <h4>Dentistry
-                                    </h4>
-
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                    aria-controls="profile" aria-selected="false">
-                                    <i class="flaticon-cardiovascular"></i>
-                                    <h4>Cardiology
-                                    </h4>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                                    aria-controls="contact" aria-selected="false">
-                                    <i class="flaticon-ear"></i>
-                                    <h4>ENT
-                                    </h4>
-
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="Astrology-tab" data-toggle="tab" href="#Astrology" role="tab"
-                                    aria-controls="contact" aria-selected="false">
-                                    <i class="flaticon-bone"></i>
-                                    <h4>Astrology
-                                    </h4>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="Neuroanatomy-tab" data-toggle="tab" href="#Neuroanatomy"
-                                    role="tab" aria-controls="contact" aria-selected="false">
-                                    <i class="flaticon-lung"></i>
-                                    <h4>Neuroanatomy
-                                    </h4>
-
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="Blood-tab" data-toggle="tab" href="#Blood" role="tab"
-                                    aria-controls="contact" aria-selected="false">
-                                    <i class="flaticon-cell"></i>
-                                    <h4>Blood
-                                    </h4>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="dept_main_info white-bg">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <!-- single_content  -->
-                        <div class="row align-items-center">
-                            <div class="col-lg-5">
-                                <div class="dept_thumb">
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- single_content  -->
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <!-- single_content  -->
-                        <div class="row align-items-center">
-                            <div class="col-lg-5">
-                                <div class="dept_thumb">
-                                    <img src="{{ asset('assets/medi/img/department/1.jpg') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="dept_info">
-                                    <h3>
-                                        Cardiology
-                                    </h3>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
-                                    </p>
-
-                                    <a href="#" class="boxed-btn">
-                                        Make Appointment
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single_content  -->
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                        <!-- single_content  -->
-                        <div class="row align-items-center">
-                            <div class="col-lg-5">
-                                <div class="dept_thumb">
-                                    <img src="{{ asset('assets/medi/img/department/1.jpg') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="dept_info">
-                                    <h3>
-                                        ENT
-                                    </h3>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
-                                    </p>
-
-                                    <a href="#" class="boxed-btn">
-                                        Make Appointment
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single_content  -->
-                    </div>
-                    <div class="tab-pane fade" id="Astrology" role="tabpanel" aria-labelledby="Astrology-tab">
-                        <!-- single_content  -->
-                        <div class="row align-items-center">
-                            <div class="col-lg-5">
-                                <div class="dept_thumb">
-                                    <img src="{{ asset('assets/medi/img/department/1.jpg') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="dept_info">
-                                    <h3>
-                                        Astrology
-                                    </h3>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
-                                    </p>
-
-                                    <a href="#" class="boxed-btn">
-                                        Make Appointment
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single_content  -->
-                    </div>
-                    <div class="tab-pane fade" id="Neuroanatomy" role="tabpanel" aria-labelledby="Neuroanatomy-tab">
-                        <!-- single_content  -->
-                        <div class="row align-items-center">
-                            <div class="col-lg-5">
-                                <div class="dept_thumb">
-                                    <img src="{{ asset('assets/medi/img/department/1.jpg') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="dept_info">
-                                    <h3>
-                                        Neuroanatomy
-                                    </h3>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
-                                    </p>
-
-                                    <a href="#" class="boxed-btn">
-                                        Make Appointment
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single_content  -->
-                    </div>
-                    <div class="tab-pane fade" id="Blood" role="tabpanel" aria-labelledby="Blood-tab">
-                        <!-- single_content  -->
-                        <div class="row align-items-center">
-                            <div class="col-lg-5">
-                                <div class="dept_thumb">
-                                    <img src="{{ asset('assets/medi/img/department/1.jpg') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="dept_info">
-                                    <h3>
-                                        Blood
-                                    </h3>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.
-                                    </p>
-
-                                    <a href="#" class="boxed-btn">
-                                        Make Appointment
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- single_content  -->
-                    </div>
+                <div class="col-lg-3 text-lg-end">
+                    <a href="{{ url('/departments') }}" class="department-learn-more">
+                        {{ app()->getLocale() === 'ar' ? 'اعرف المزيد' : 'Learn More' }}
+                    </a>
                 </div>
             </div>
 
+            <div class="row department-grid">
+                @foreach ($departments as $department)
+                @php
+                $departmentName = app()->getLocale() === 'ar' ? $department->name_ar : $department->name_en;
+                @endphp
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <div class="department-card {{ $loop->first ? 'active' : '' }}">
+                        <div class="department-icon">
+                            <i class="{{ $department->icon }}"></i>
+                        </div>
+                        <h4>{{ $departmentName }}</h4>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
+
     <!-- depertment_area_end  -->
 
     <!-- expert_doctors_area_start -->

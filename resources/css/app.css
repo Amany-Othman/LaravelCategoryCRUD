@@ -700,3 +700,83 @@
     font-size: 14px;
     color: var(--text-muted);
 }
+
+/* =========================================================
+   Department Cards
+========================================================= */
+
+.department-learn-more {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-sm);
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 14px;
+    background-color: transparent;
+    transition: background-color var(--transition), color var(--transition), transform var(--transition);
+}
+
+.department-learn-more:hover {
+    background-color: var(--primary);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.department-grid {
+    margin-top: 45px;
+    row-gap: 24px;
+}
+
+.department-card {
+    height: 100%;
+    padding: 40px 18px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.department-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
+    background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
+}
+
+.department-card.active {
+    border-color: transparent;
+    background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
+    box-shadow: var(--shadow-md);
+}
+
+.department-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    margin-bottom: 16px;
+    color: var(--primary);
+    font-size: 40px;
+    transition: color var(--transition);
+}
+
+.department-card:hover .department-icon,
+.department-card.active .department-icon {
+    color: #fff;
+}
+
+.department-card h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    transition: color var(--transition);
+}
+
+.department-card:hover h4,
+.department-card.active h4 {
+    color: #fff;
+}
