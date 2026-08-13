@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\HomeContentController;
 use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentController;
 
 use App\Models\HomeContent;
 use App\Models\Doctor;
@@ -20,7 +22,13 @@ Route::get('/', function () {
     app()->setLocale('en');
 
     $homeContents = HomeContent::all()
-        ->groupBy('section');
+        ->groupBy('section')
+        ->map(function ($group) {
+            // 'key' should be the column that identifies each field
+            // within a section (e.g. 'subtitle', 'main_title', 'button_text').
+            // Rename 'key' below if your migration uses a different column name.
+           return $group->keyBy('field');
+        });
 
     $doctors = Doctor::all();
 
@@ -31,7 +39,10 @@ Route::get('/', function () {
 Route::get('/{locale}', function ($locale) {
 
     $homeContents = HomeContent::all()
-        ->groupBy('section');
+        ->groupBy('section')
+        ->map(function ($group) {
+         return $group->keyBy('field');
+        });
 
     $doctors = Doctor::all();
 
@@ -39,6 +50,13 @@ Route::get('/{locale}', function ($locale) {
 })
     ->where('locale', 'ar')
     ->middleware('set.locale');
+
+
+Route::post('/appointments', [AppointmentController::class, 'store'])
+    ->name('appointments.store');
+
+
+
 
 Route::get('/login', [AuthController::class, 'showLogin'])
     ->middleware('guest')
@@ -86,7 +104,10 @@ Route::resource('admin/products', AdminProductController::class)
 
 Route::resource('admin/home-contents', HomeContentController::class)
     ->names('admin.home-contents');
-  
-    
+
+
 Route::resource('admin/doctors', DoctorController::class)
-    ->names('admin.doctors');    
+    ->names('admin.doctors');
+
+Route::resource('admin/appointments', AdminAppointmentController::class)
+    ->names('admin.appointments');    

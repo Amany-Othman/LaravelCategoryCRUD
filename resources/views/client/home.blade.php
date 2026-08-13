@@ -144,15 +144,15 @@
                                         - link
                                 --}}
                                 <span>
-                                    {{ $homeContents['hero']['subtitle']->getLocalizedValue() }}
+                                    {{ $homeContents['hero']['subtitle']?->getLocalizedValue() }}
                                 </span>
 
                                 <h3>
-                                    {{ $homeContents['hero']['main_title']getLocalizedValue() }}
+                                    {{ $homeContents['hero']['main_title']?->getLocalizedValue() }}
                                 </h3>
 
-                                <a href="{{ $homeContents['hero']['button']->link ?? '#' }}" class="boxed-btn5">
-                                    {{ $homeContents['hero']['button_text']->getLocalizedValue() }}
+                                <a href="{{ $homeContents['hero']['button_text']->link ?? '#' }}" class="boxed-btn5">
+                                    {{ $homeContents['hero']['button_text']?->getLocalizedValue() }}
                                 </a>
                             </div>
                         </div>
@@ -534,38 +534,59 @@
                                 Book an
                                 <span>Appointment</span>
                             </h3>
-                            <form action="#">
+                            @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                            @endif
+                            <form action="{{ route('appointments.store') }}" method="POST">
+                                @csrf
+
                                 <div class="row">
+
                                     <div class="col-xl-12">
-                                        <select class="form-select wide" id="default-select" class="">
-                                            <option data-display="Please select doctor to visit">Please select doctor to
-                                                visit </option>
-                                            <option value="1">Anaf</option>
-                                            <option value="2">Nayna Therapy</option>
-                                            <option value="3">Nadif</option>
+                                        <select class="form-select wide" id="default-select" name="doctor_name"
+                                            required>
+                                            <option value="">Please select doctor to visit</option>
+                                            <option value="Jhon Smith">Jhon Smith</option>
+                                            <option value="Sarah Ahmed">Sarah Ahmed</option>
+                                            <option value="Michael Brown">Michael Brown</option>
                                         </select>
                                     </div>
+
                                     <div class="col-xl-9">
-                                        <input type="text" placeholder="Your name ">
+                                        <input type="text" name="name" placeholder="Your name" required>
                                     </div>
+
                                     <div class="col-xl-3">
-                                        <input type="text" placeholder="Your age">
+                                        <input type="number" name="age" placeholder="Your age" min="1" max="120"
+                                            required>
                                     </div>
+
                                     <div class="col-xl-6">
-                                        <input type="text" placeholder="Phone number ">
+                                        <input type="text" name="phone" placeholder="Phone number" required>
                                     </div>
+
                                     <div class="col-xl-6">
-                                        <input type="email" placeholder="Email Address">
+                                        <input type="email" name="email" placeholder="Email Address" required>
                                     </div>
+
                                     <div class="col-xl-6">
-                                        <input class="datepicker" placeholder="Appointment Date">
+                                        <input class="datepicker" name="appointment_date" placeholder="Appointment Date"
+                                            required>
                                     </div>
+
                                     <div class="col-xl-6">
-                                        <input class="timepicker" placeholder="Suitable time">
+                                        <input class="timepicker" name="appointment_time" placeholder="Suitable time"
+                                            required>
                                     </div>
+
                                     <div class="col-xl-12">
-                                        <button type="submit" class="boxed-btn3">Make an Appointment</button>
+                                        <button type="submit" class="boxed-btn3">
+                                            Make an Appointment
+                                        </button>
                                     </div>
+
                                 </div>
                             </form>
                         </div>
